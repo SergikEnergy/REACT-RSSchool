@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Routes, Route, Link } from 'react-router-dom';
 
-import Header from '../components/Header';
+import Header from '../../components/header/Header';
 
 // eslint-disable-next-line react/prefer-stateless-function
 export default class MainPage extends Component {
