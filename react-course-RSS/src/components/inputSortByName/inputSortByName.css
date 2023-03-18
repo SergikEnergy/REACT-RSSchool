@@ -1,0 +1,48 @@
+.sort__field {
+  padding: 10px;
+  position: relative;
+  margin: auto;
+  width: 40%;
+}
+.sort__field_input {
+  display: inline-block;
+  width: 100%;
+  height: 30px;
+  padding: 5px 10px 5px 40px;
+  font-size: 2rem;
+  line-height: 2.2rem;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+  background-color: rgb(54, 54, 54);
+  color: white;
+}
+
+.sort__field_input::placeholder {
+  color: white;
+}
+
+.sort__field_input:hover,
+.sort__field_input:focus,
+.sort__field_input:target {
+  color: rgb(56, 255, 82);
+  border: 1px solid violet;
+}
+
+.sort__field_icon {
+  position: absolute;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  top: 0;
+  bottom: 0;
+  left: 1.8rem;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.sort__field_icon-img {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+}

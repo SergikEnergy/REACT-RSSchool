@@ -1,15 +1,17 @@
 import React, { Component } from 'react';
-import { Routes, Route, Link } from 'react-router-dom';
+import InputSortByName from '../../components/inputSortByName/InputSortByName';
 
-import Header from '../../components/header/Header';
+import './mainPage.css';
 
 // eslint-disable-next-line react/prefer-stateless-function
 export default class MainPage extends Component {
   render() {
     return (
-      <main>
-        <p>Main Content</p>
-        <p>Cards Content</p>
+      <main className="main-page">
+        <div className="main-page__wrapper">
+          <h1 className="main-page__title">Welcome to the general page</h1>
+          <InputSortByName />
+        </div>
       </main>
     );
   }
