@@ -1,28 +1,40 @@
 import React, { Component } from 'react';
 
-import { ISortName } from '../../types';
+import { ISearchName } from '../../types';
 import searchIcon from '../../assets/img/search_icon.png';
-import './inputSortByName.css';
+import './inputSearchByName.css';
 
 // eslint-disable-next-line prettier/prettier, react/prefer-stateless-function
-export default class InputSortByName extends Component<any, ISortName> {
+export default class InputSearchByName extends Component<any, ISearchName> {
   constructor(props: any) {
     super(props);
-    this.state = { sortParameters: '' };
+    this.state = {
+      searchParameters: localStorage.getItem('searchParameters') || '',
+    };
     this.changeHandler = this.changeHandler.bind(this);
+  }
+
+  componentDidMount(): void {
+    const searchParameters = localStorage.getItem('searchParameters') || '';
+    this.setState({ searchParameters });
+  }
+
+  componentWillUnmount(): void {
+    const { searchParameters } = this.state;
+    localStorage.setItem('searchParameters', searchParameters);
   }
 
   changeHandler(event: React.ChangeEvent<HTMLInputElement>) {
     this.setState((prevState) => {
       return {
         ...prevState,
-        sortParameters: event.target.value,
+        searchParameters: event.target.value,
       };
     });
   }
 
   render() {
-    const { sortParameters } = this.state;
+    const { searchParameters } = this.state;
 
     return (
       <div className="sort__field">
@@ -32,7 +44,7 @@ export default class InputSortByName extends Component<any, ISortName> {
           className="sort__field_input"
           id="sortByName"
           placeholder="Input name of item"
-          value={sortParameters}
+          value={searchParameters || ''}
           onChange={this.changeHandler}
         />
         <div className="sort__field_icon">

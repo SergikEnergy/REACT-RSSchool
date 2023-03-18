@@ -1,4 +1,4 @@
-import { IData } from './types';
+import { IData } from '../types';
 
 const fakeData: IData[] = [
   {

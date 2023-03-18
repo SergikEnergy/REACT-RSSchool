@@ -2,8 +2,8 @@ export default interface IActiveLink {
   isActive: boolean;
 }
 
-export interface ISortName {
-  sortParameters: string;
+export interface ISearchName {
+  searchParameters: string;
 }
 
 export interface IData {

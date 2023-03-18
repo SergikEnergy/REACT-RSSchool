@@ -1,17 +1,27 @@
 import React, { Component } from 'react';
 
 import { IData } from '../../types';
+import imgData from '../../data/fakeImgData';
+import './card.css';
+
+interface CardProps {
+  products: IData;
+}
 
 // eslint-disable-next-line react/prefer-stateless-function
-class Card extends Component<IData> {
+class Card extends Component<CardProps> {
   render() {
-    const { title } = this.props;
+    const { products } = this.props;
     return (
-      <>
-        <h1>Hello from card</h1>
-
-        <div>{title}</div>
-      </>
+      <div
+        className="card"
+        style={{ backgroundImage: `url(${imgData[products.id - 1]})` }}
+      >
+        <div className="card__title">{products.title}</div>
+        <div className="card__description">{products.description}</div>
+        <div className="card__price">Price: {products.price}</div>
+        <div className="card__rating">Rating: {products.rating}</div>
+      </div>
     );
   }
 }

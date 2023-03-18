@@ -1,0 +1,12 @@
+.cards-list {
+  align-self: center;
+  justify-content: center;
+}
+
+.card-list_wrapper {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-evenly;
+}

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 
 import MainPage from './pages/main/MainPage';
 import AboutPage from './pages/about/AboutPage';
@@ -10,15 +10,17 @@ import Layout from './components/layout/Layout';
 export default class App extends Component {
   render() {
     return (
-      <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route index element={<MainPage />} />
-          <Route path="home" element={<MainPage />} />
-          <Route path="about" element={<AboutPage />} />
-          <Route path="404" element={<NotFound />} />
-          <Route path="*" element={<Navigate to="/404" replace />} />
-        </Route>
-      </Routes>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Layout />}>
+            <Route index element={<MainPage />} />
+            <Route path="home" element={<MainPage />} />
+            <Route path="about" element={<AboutPage />} />
+            <Route path="404" element={<NotFound />} />
+            <Route path="*" element={<Navigate to="/404" replace />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
     );
   }
 }

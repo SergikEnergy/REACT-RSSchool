@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 
-import fakeData from '../../fakeData';
+import fakeData from '../../data/fakeData';
 import Card from '../Card/Card';
+import './cardList.css';
 
 // eslint-disable-next-line react/prefer-stateless-function
 class CardList extends Component {
@@ -10,14 +11,7 @@ class CardList extends Component {
       <div className="cards-list">
         <div className="card-list_wrapper">
           {fakeData.map((item) => (
-            <Card
-              key={item.id}
-              id={item.id}
-              title={item.title}
-              description={item.description}
-              price={item.price}
-              rating={item.rating}
-            />
+            <Card key={item.id} products={item} />
           ))}
         </div>
       </div>
