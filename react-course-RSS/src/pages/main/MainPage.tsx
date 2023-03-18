@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+
 import InputSortByName from '../../components/inputSortByName/InputSortByName';
+import CardList from '../../components/CardList/CardList';
 
 import './mainPage.css';
 
@@ -11,6 +13,7 @@ export default class MainPage extends Component {
         <div className="main-page__wrapper">
           <h1 className="main-page__title">Welcome to the general page</h1>
           <InputSortByName />
+          <CardList />
         </div>
       </main>
     );

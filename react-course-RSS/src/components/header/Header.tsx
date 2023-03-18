@@ -22,7 +22,7 @@ export default class Header extends Component {
                   Home
                 </NavLink>
               </li>
-              <li className="header_navigation_link">
+              <li className="header_navigation__list_item">
                 <NavLink to="/about" className={setActiveClass}>
                   About
                 </NavLink>
