@@ -15,6 +15,7 @@ class Card extends Component<CardProps> {
     return (
       <div
         className="card"
+        data-testID="cardTest"
         style={{ backgroundImage: `url(${imgData[products.id - 1]})` }}
       >
         <div className="card__title">{products.title}</div>

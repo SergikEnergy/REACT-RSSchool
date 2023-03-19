@@ -56,6 +56,7 @@ export default class InputSearchByName extends Component<unknown, ISearchName> {
         <div className="sort__field">
           <input
             type="text"
+            data-testID="searchName"
             name="sortParameters"
             className="sort__field_input"
             id="sortByName"

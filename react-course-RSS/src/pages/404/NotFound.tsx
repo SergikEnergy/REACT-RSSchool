@@ -14,9 +14,17 @@ export default class NotFound extends Component {
           Here not found something usefull, check your path, please
         </p>
         <div className="not-found__img">
-          <img src={img404} alt="not found page" />
+          <img
+            src={img404}
+            alt="not found page img"
+            data-testID="imgNotFound"
+          />
         </div>
-        <NavLink to="/" className="not-found__link_home">
+        <NavLink
+          to="/"
+          className="not-found__link_home"
+          data-testId="home_link"
+        >
           Go home
         </NavLink>
       </main>

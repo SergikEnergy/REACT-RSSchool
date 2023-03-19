@@ -9,7 +9,7 @@ import { ISearchName } from '../../types';
 export default class MainPage extends Component<unknown, ISearchName> {
   render() {
     return (
-      <main className="main-page">
+      <main className="main-page" data-testID="main-page">
         <div className="main-page__wrapper">
           <h1 className="main-page__title">Welcome to the general page</h1>
           <InputSearchByName />

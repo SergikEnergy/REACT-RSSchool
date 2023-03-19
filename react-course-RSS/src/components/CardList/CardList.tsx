@@ -17,7 +17,7 @@ class CardList extends Component<CardListProps, unknown> {
               item && item.id ? <Card key={item.id} products={item} /> : ''
             )
           ) : (
-            <div className="cards-list_not-found">
+            <div className="cards-list_not-found" data-testID="emptyCards">
               Oops, nothing was founded!
             </div>
           )}
