@@ -14,3 +14,7 @@ export interface IData {
   rating: number;
   img?: string;
 }
+
+export interface CardListProps {
+  data: IData[] | undefined[];
+}
