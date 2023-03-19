@@ -9,8 +9,8 @@ import CardList from '../CardList/CardList';
 const dataArray = [...fakeData];
 
 // eslint-disable-next-line prettier/prettier, react/prefer-stateless-function
-export default class InputSearchByName extends Component<any, ISearchName> {
-  constructor(props: any) {
+export default class InputSearchByName extends Component<unknown, ISearchName> {
+  constructor(props: unknown) {
     super(props);
     this.state = {
       searchParameters: localStorage.getItem('searchParameters') || '',
@@ -22,7 +22,6 @@ export default class InputSearchByName extends Component<any, ISearchName> {
   componentDidMount(): void {
     const searchParameters = localStorage.getItem('searchParameters') || '';
     this.setState({ searchParameters });
-    console.log('mount');
   }
 
   componentWillUnmount(): void {

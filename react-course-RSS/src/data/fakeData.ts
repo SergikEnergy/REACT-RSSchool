@@ -143,8 +143,10 @@ const fakeData: IData[] = [
   {
     id: 19,
     title: 'Cycle Bike Glow',
-    description:
-      'Universal fitment and easy to install no special wires, can be easily installed and removed. Fits most standard tyre air stem valves of road, mountain bicycles, motocycles and cars.Bright led will turn on w',
+    description: `Universal fitment and easy to install no special wires, 
+			can be easily installed and removed. Fits most standard tyre air 
+			stem valves of road, mountain bicycles, motorcycles and cars.
+			Bright led will turn on w`,
     price: 35,
     rating: 4.1,
   },

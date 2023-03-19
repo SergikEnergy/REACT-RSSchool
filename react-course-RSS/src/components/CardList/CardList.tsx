@@ -5,7 +5,7 @@ import Card from '../Card/Card';
 import './cardList.css';
 
 // eslint-disable-next-line react/prefer-stateless-function
-class CardList extends Component<CardListProps, any> {
+class CardList extends Component<CardListProps, unknown> {
   render() {
     const { data } = this.props;
 

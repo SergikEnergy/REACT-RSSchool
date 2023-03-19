@@ -6,7 +6,7 @@ import './mainPage.css';
 import { ISearchName } from '../../types';
 
 // eslint-disable-next-line react/prefer-stateless-function
-export default class MainPage extends Component<any, ISearchName> {
+export default class MainPage extends Component<unknown, ISearchName> {
   render() {
     return (
       <main className="main-page">

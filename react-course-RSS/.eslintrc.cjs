@@ -24,7 +24,7 @@ module.exports = {
     'no-console': 'warn',
     'prefer-const': 'error',
     indent: ['warn', 2],
-    'max-len': ['warn', { code: 120 }],
+    'max-len': ['warn', { code: 160 }],
     semi: ['warn', 'always'],
     'comma-dangle': 'off',
     '@typescript-eslint/comma-dangle': ['error', 'only-multiline'],

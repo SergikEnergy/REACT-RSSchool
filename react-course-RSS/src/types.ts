@@ -1,5 +1,6 @@
 export default interface IActiveLink {
   isActive: boolean;
+  // eslint-disable-next-line semi
 }
 
 export interface ISearchName {
