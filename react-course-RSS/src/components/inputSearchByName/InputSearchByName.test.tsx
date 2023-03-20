@@ -1,6 +1,7 @@
 import React from 'react';
-import { describe, test, vi } from 'vitest';
+import { describe, test } from 'vitest';
 import { render, screen } from '@testing-library/react';
+
 import InputSearchByName from './InputSearchByName';
 
 describe('test input panel', () => {
@@ -12,7 +13,6 @@ describe('test input panel', () => {
 
   describe('Testing Base property', () => {
     const inputValue = localStorage.getItem('searchParameters');
-    const onChangeInput = vi.fn();
     let input: HTMLInputElement;
     beforeEach(() => {
       render(<InputSearchByName />);
