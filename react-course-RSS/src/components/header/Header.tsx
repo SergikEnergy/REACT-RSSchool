@@ -27,6 +27,11 @@ export default class Header extends Component {
                   About
                 </NavLink>
               </li>
+              <li className="header_navigation__list_item">
+                <NavLink to="/form" className={setActiveClass}>
+                  Form
+                </NavLink>
+              </li>
             </ul>
           </nav>
         </div>

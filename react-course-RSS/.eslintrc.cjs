@@ -24,9 +24,11 @@ module.exports = {
     'no-console': 'warn',
     'prefer-const': 'error',
     indent: ['warn', 2],
+    'comma-dangle': ['error', 'only-multiline'],
     'max-len': ['warn', { code: 160 }],
     semi: ['warn', 'always'],
-    'comma-dangle': 'off',
     '@typescript-eslint/comma-dangle': ['error', 'only-multiline'],
+    '@typescript-eslint/no-explicit-any': 'error',
+    '@typescript-eslint/ban-ts-comment': 'error',
   },
 };
