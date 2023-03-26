@@ -19,3 +19,15 @@ export interface IData {
 export interface CardListProps {
   data: IData[] | undefined[];
 }
+
+export interface FormPageState {
+  name: string;
+  lastName: string;
+  birthday: string;
+  preferredMeal: string;
+  img: string | null;
+  subscribe: boolean;
+}
+export interface FormComponentProps {
+  data: FormPageState;
+}
