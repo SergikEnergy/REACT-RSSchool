@@ -2,6 +2,7 @@ import React, { createRef, Component } from 'react';
 
 import { FormComponentProps, FormComponentState } from '../../types';
 import InputText from '../UI/InputText/InputText';
+import './formComponent.css';
 
 // eslint-disable-next-line react/prefer-stateless-function
 export default class FormComponent extends Component<
@@ -10,13 +11,25 @@ export default class FormComponent extends Component<
 > {
   nameField: React.RefObject<HTMLInputElement>;
 
+  lastNameField: React.RefObject<HTMLInputElement>;
+
+  birthDayField: React.RefObject<HTMLInputElement>;
+
   constructor(props: unknown) {
     super(props);
-    this.nameField = createRef();
+
     this.state = {
       firstName: '',
+      lastName: '',
+      birthDay: '',
       errorName: true,
+      errorLastName: true,
+      errorBirthDay: true,
     };
+
+    this.nameField = createRef();
+    this.lastNameField = createRef();
+    this.birthDayField = createRef();
 
     this.handlerSubmit = this.handlerSubmit.bind(this);
     this.handlerChange = this.handlerChange.bind(this);
@@ -24,18 +37,36 @@ export default class FormComponent extends Component<
 
   handlerSubmit(event: React.FormEvent<HTMLFormElement>): void {
     event.preventDefault();
-    console.log(this.nameField);
+    console.log(
+      this.nameField.current?.value,
+      this.lastNameField.current?.value,
+      this.birthDayField.current?.value
+    );
   }
 
   handlerChange(event: React.ChangeEvent<HTMLInputElement>) {
-    this.setState({ firstName: event.target.value });
+    if (event.target === this.nameField.current) {
+      this.setState({ firstName: event.target.value });
+    } else if (event.target === this.lastNameField.current) {
+      this.setState({ lastName: event.target.value });
+    } else if (event.target === this.birthDayField.current) {
+      this.setState({ birthDay: event.target.value });
+    }
   }
 
   render() {
-    const { firstName, errorName } = this.state;
+    const {
+      firstName,
+      lastName,
+      errorName,
+      errorLastName,
+      birthDay,
+      errorBirthDay,
+    } = this.state;
     return (
       <form onSubmit={this.handlerSubmit} className="form-block">
         <InputText
+          type="text"
           value={firstName}
           name="nameInput"
           refTo={this.nameField}
@@ -43,6 +74,31 @@ export default class FormComponent extends Component<
           placeholder="-- your name --"
           onChange={this.handlerChange}
           error={errorName}
+          label="Name"
+        />
+
+        <InputText
+          type="text"
+          value={lastName}
+          name="lastNameInput"
+          refTo={this.lastNameField}
+          id="lastNameInput"
+          placeholder="-- your last name --"
+          onChange={this.handlerChange}
+          error={errorLastName}
+          label="Last Name"
+        />
+
+        <InputText
+          type="date"
+          value={birthDay}
+          name="birthDate"
+          refTo={this.birthDayField}
+          id="birthDayInput"
+          placeholder=""
+          onChange={this.handlerChange}
+          error={errorBirthDay}
+          label="Your BirthDay"
         />
 
         <div className="submit-block">

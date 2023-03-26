@@ -34,13 +34,15 @@ export interface FormComponentProps {
 }
 
 export interface InputTextProps {
+  type: string;
   value: string;
   name: string;
   refTo: React.RefObject<HTMLInputElement>;
   id: string;
-  placeholder: string;
+  placeholder?: string;
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   error: boolean;
+  label: string;
 }
 export interface InputTextState {
   value: string;
@@ -56,8 +58,10 @@ export interface IErrorForm {
 export interface FormComponentState {
   firstName: string;
   errorName: boolean;
-  lastName?: string;
-  birthday?: string;
+  lastName: string;
+  errorLastName: boolean;
+  birthDay: string;
+  errorBirthDay: boolean;
   preferredMeal?: string;
   img?: string | null;
   subscribe?: boolean;

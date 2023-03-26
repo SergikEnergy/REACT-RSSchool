@@ -6,10 +6,20 @@ import './inputText.css';
 // eslint-disable-next-line react/prefer-stateless-function
 export default class InputText extends Component<InputTextProps, unknown> {
   render() {
-    const { value, refTo, id, placeholder, onChange, name, error } = this.props;
+    const {
+      type,
+      value,
+      refTo,
+      id,
+      placeholder,
+      onChange,
+      name,
+      error,
+      label,
+    } = this.props;
     const errorBlock = error ? (
       <div className="error-name error-box">
-        The field name should be not empty
+        {label.toLowerCase()} should be not empty
       </div>
     ) : (
       ''
@@ -17,11 +27,11 @@ export default class InputText extends Component<InputTextProps, unknown> {
 
     return (
       <div className="name-box">
-        <p className="name__label">Name: </p>
+        <p className="name__label">{label}</p>
         <input
+          type={type}
           ref={refTo}
           className="name_input"
-          type="text"
           id={id}
           name={name}
           value={value}
