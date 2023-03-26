@@ -40,7 +40,9 @@ export interface InputTextProps {
   refTo: React.RefObject<HTMLInputElement>;
   id: string;
   placeholder?: string;
-  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  onChange: (
+    event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => void;
   error: boolean;
   label: string;
 }
@@ -62,7 +64,25 @@ export interface FormComponentState {
   errorLastName: boolean;
   birthDay: string;
   errorBirthDay: boolean;
-  preferredMeal?: string;
+  meal: string;
+  errorMeal: boolean;
+  errorSwitcher: boolean;
   img?: string | null;
-  subscribe?: boolean;
+  errorImg?: boolean;
+}
+
+export interface OptionElementProps {
+  name: string;
+  id: string;
+  value: string;
+  variants: string[];
+  error: boolean;
+  refTo: React.RefObject<HTMLSelectElement>;
+  onChange: (
+    event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => void;
+}
+
+export interface OptionElementState {
+  value: string;
 }
