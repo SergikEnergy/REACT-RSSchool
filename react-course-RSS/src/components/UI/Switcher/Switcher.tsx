@@ -17,7 +17,7 @@ export default class Switcher extends Component<SwitcherProps, SwitcherState> {
 
   render() {
     const { error, refTo, onChange } = this.props;
-    const { switchState } = this.state;
+
     const errorBlock = error ? (
       <div className="error-switcher error-box">
         Please, agree with privacy policy

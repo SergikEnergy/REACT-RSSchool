@@ -20,17 +20,19 @@ export interface CardListProps {
   data: IData[] | undefined[];
 }
 
+export interface IUserCard {
+  id: string;
+  name: string | undefined;
+  lastName: string | undefined;
+  birthDay: string | undefined;
+  meal: string | undefined;
+  image: string;
+}
 export interface FormPageState {
-  firstName: string;
-
-  lastName?: string;
-  birthday?: string;
-  preferredMeal?: string;
-  img?: string | null;
-  subscribe?: boolean;
+  userCards: IUserCard[];
 }
 export interface FormComponentProps {
-  data: FormPageState;
+  getUserCard: (user: IUserCard) => void;
 }
 
 export interface InputTextProps {
@@ -99,4 +101,8 @@ export interface SwitcherProps {
 
 export interface SwitcherState {
   switchState: boolean;
+}
+
+export interface UsersCardListProps {
+  cards: IUserCard[];
 }

@@ -1,6 +1,6 @@
 import React, { createRef, Component } from 'react';
 
-import { FormComponentState } from '../../types';
+import { FormComponentState, FormComponentProps } from '../../types';
 import InputText from '../UI/InputText/InputText';
 import OptionElement from '../UI/OptionElement/OptionElement';
 import Switcher from '../UI/Switcher/Switcher';
@@ -10,7 +10,7 @@ import './formComponent.css';
 
 // eslint-disable-next-line react/prefer-stateless-function
 export default class FormComponent extends Component<
-  unknown,
+  FormComponentProps,
   FormComponentState
 > {
   public allRefs: {
@@ -23,7 +23,7 @@ export default class FormComponent extends Component<
     fileField: React.RefObject<HTMLInputElement>;
   };
 
-  constructor(props: unknown) {
+  constructor(props: FormComponentProps) {
     super(props);
 
     this.state = {
@@ -61,25 +61,21 @@ export default class FormComponent extends Component<
   handlerSubmit(event: React.FormEvent<HTMLFormElement>): void {
     event.preventDefault();
     const isValid = this.validateForm();
-    // const {
-    //   errorName,
-    //   errorLastName,
-    //   errorMeal,
-    //   errorSwitcher,
-    //   errorBirthDay,
-    //   errorFile,
-    // } = this.state;
+
     if (isValid) {
-      const Card = {
-        firstName: this.allRefs.nameField.current?.value,
+      const user = {
+        id: Date.now().toString(),
+        name: this.allRefs.nameField.current?.value,
         lastName: this.allRefs.lastNameField.current?.value,
         birthDay: this.allRefs.birthDayField.current?.value,
         meal: this.allRefs.mealOption.current?.value,
+        image: this.allRefs.fileField.current?.files
+          ? URL.createObjectURL(this.allRefs.fileField.current?.files[0])
+          : '',
       };
-      console.log(Card);
+      const { getUserCard } = this.props;
+      getUserCard(user);
       this.resetForm();
-    } else {
-      console.log('error');
     }
   }
 
@@ -101,12 +97,6 @@ export default class FormComponent extends Component<
     ) {
       this.setState({ meal: event.target.value });
       this.allRefs.mealOption.current.value = event.target.value;
-    }
-    if (
-      event.target === this.allRefs.fileField.current &&
-      this.allRefs.fileField.current.files
-    ) {
-      console.log(this.allRefs.fileField.current.files[0]);
     }
   }
 
@@ -217,6 +207,7 @@ export default class FormComponent extends Component<
       errorSwitcher,
       errorFile,
     } = this.state;
+
     return (
       <form onSubmit={this.handlerSubmit} className="form-block">
         <InputText
