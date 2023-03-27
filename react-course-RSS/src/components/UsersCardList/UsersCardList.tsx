@@ -12,7 +12,7 @@ export default class UsersCardList extends React.Component<
   render() {
     const { cards } = this.props;
     return (
-      <div className="users-wrapper">
+      <div className="users-wrapper" data-testid="TestUserListWrapper">
         {cards.map((user) => {
           return <User key={user.id} data={{ ...user }} />;
         })}

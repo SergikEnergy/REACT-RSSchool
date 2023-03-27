@@ -24,7 +24,7 @@ class FormPage extends Component<unknown, FormPageState> {
   render() {
     const { userCards } = this.state;
     return (
-      <main className="form-page">
+      <main className="form-page" data-testid="form-page">
         <h2 className="form__title">
           Please, fill in this blank to create new user
         </h2>
