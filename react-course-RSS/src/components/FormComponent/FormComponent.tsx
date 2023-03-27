@@ -31,11 +31,11 @@ export default class FormComponent extends Component<
       lastName: '',
       birthDay: '',
       meal: '--select your favorite meal--',
-      errorName: true,
-      errorLastName: true,
-      errorBirthDay: true,
-      errorMeal: true,
-      errorSwitcher: true,
+      errorName: false,
+      errorLastName: false,
+      errorBirthDay: false,
+      errorMeal: false,
+      errorSwitcher: false,
     };
 
     this.nameField = createRef();
@@ -46,17 +46,36 @@ export default class FormComponent extends Component<
 
     this.handlerSubmit = this.handlerSubmit.bind(this);
     this.handlerChange = this.handlerChange.bind(this);
+    this.validateForm = this.validateForm.bind(this);
   }
 
   handlerSubmit(event: React.FormEvent<HTMLFormElement>): void {
     event.preventDefault();
-    console.log(
-      this.nameField.current?.value,
-      this.lastNameField.current?.value,
-      this.birthDayField.current?.value,
-      this.mealOption.current?.value,
-      this.switcherField.current?.checked
-    );
+    this.validateForm();
+    const {
+      errorName,
+      errorLastName,
+      errorMeal,
+      errorSwitcher,
+      errorBirthDay,
+    } = this.state;
+    if (
+      errorName &&
+      errorLastName &&
+      errorMeal &&
+      errorSwitcher &&
+      errorBirthDay
+    ) {
+      console.log(
+        this.nameField.current?.value,
+        this.lastNameField.current?.value,
+        this.birthDayField.current?.value,
+        this.mealOption.current?.value,
+        this.switcherField.current?.checked
+      );
+    } else {
+      console.log('error');
+    }
   }
 
   handlerChange(
@@ -74,8 +93,50 @@ export default class FormComponent extends Component<
     ) {
       this.setState({ meal: event.target.value });
       this.mealOption.current.value = event.target.value;
-    } else {
-      console.log(this.mealOption.current, event.target);
+    }
+  }
+
+  validateForm() {
+    this.setState({
+      errorName: false,
+      errorLastName: false,
+      errorBirthDay: false,
+      errorMeal: false,
+      errorSwitcher: false,
+    });
+    console.log(this.nameField.current.value.length);
+
+    if (this.nameField.current && this.nameField.current.value.trim() === '') {
+      this.setState((prevState) => ({ ...prevState, errorName: true }));
+    }
+
+    if (
+      this.lastNameField.current &&
+      this.lastNameField.current.value.trim() === ''
+    ) {
+      this.setState((prevState) => ({ ...prevState, errorLastName: true }));
+    }
+
+    if (
+      this.birthDayField.current &&
+      this.birthDayField.current.value.trim() === ''
+    ) {
+      this.setState((prevState) => ({ ...prevState, errorBirthDay: true }));
+    }
+
+    if (
+      this.mealOption.current &&
+      this.mealOption.current.value === 'default'
+    ) {
+      this.setState((prevState) => ({ ...prevState, errorMeal: true }));
+    }
+
+    if (
+      this.switcherField &&
+      this.switcherField.current &&
+      !this.switcherField.current.checked
+    ) {
+      this.setState((prevState) => ({ ...prevState, errorSwitcher: true }));
     }
   }
 
@@ -87,7 +148,6 @@ export default class FormComponent extends Component<
       errorLastName,
       birthDay,
       errorBirthDay,
-      meal,
       errorMeal,
       errorSwitcher,
     } = this.state;
@@ -134,7 +194,13 @@ export default class FormComponent extends Component<
           name="meal"
           id="mealSelect"
           value="favoriteMeal"
-          variants={[meal, 'MeatBalls', 'Vegetables', 'Crisps', 'FruitPie']}
+          variants={[
+            '--select your favorite meal--',
+            'MeatBalls',
+            'Vegetables',
+            'Crisps',
+            'FruitPie',
+          ]}
           error={errorMeal}
           onChange={this.handlerChange}
         />
@@ -156,6 +222,4 @@ export default class FormComponent extends Component<
 //           <input type="file" className="file__input" />
 //         </div>
 //
-//         <button type="submit" className="form-submit">
-//           Create user
-//         </button>
+//
