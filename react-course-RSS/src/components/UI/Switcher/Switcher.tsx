@@ -1,16 +1,7 @@
 import React, { Component } from 'react';
 
+import { SwitcherProps, SwitcherState } from '../../../types';
 import './switcher.css';
-
-interface SwitcherProps {
-  refTo: React.RefObject<HTMLInputElement>;
-  error: boolean;
-  isToggled: boolean;
-}
-
-interface SwitcherState {
-  switchState: boolean;
-}
 
 export default class Switcher extends Component<SwitcherProps, SwitcherState> {
   constructor(props: SwitcherProps) {
@@ -25,7 +16,7 @@ export default class Switcher extends Component<SwitcherProps, SwitcherState> {
   }
 
   render() {
-    const { error, refTo } = this.props;
+    const { error, refTo, onChange } = this.props;
     const { switchState } = this.state;
     const errorBlock = error ? (
       <div className="error-switcher error-box">
@@ -40,11 +31,14 @@ export default class Switcher extends Component<SwitcherProps, SwitcherState> {
           <label htmlFor="switcher" className="switch">
             <input
               id="switcher"
-              className="switch__check"
+              className={`switch__check ${error ? 'error-field' : ''}`}
               ref={refTo}
               type="checkbox"
-              checked={switchState}
-              onChange={this.handleOnChange}
+              // checked={switchState}
+              onChange={() => {
+                this.handleOnChange();
+                onChange();
+              }}
             />
             <span className="slider" />
           </label>

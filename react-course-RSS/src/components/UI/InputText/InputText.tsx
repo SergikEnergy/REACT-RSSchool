@@ -16,6 +16,7 @@ export default class InputText extends Component<InputTextProps, unknown> {
       name,
       error,
       label,
+      accept,
     } = this.props;
     const errorBlock = error ? (
       <div className="error-name error-box">
@@ -29,9 +30,10 @@ export default class InputText extends Component<InputTextProps, unknown> {
       <div className="name-box">
         <p className="name__label">{label}</p>
         <input
+          accept={accept}
           type={type}
           ref={refTo}
-          className="name_input"
+          className={`name_input ${error ? 'error-field' : ''}`}
           id={id}
           name={name}
           value={value}

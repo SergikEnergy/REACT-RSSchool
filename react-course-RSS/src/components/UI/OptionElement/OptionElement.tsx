@@ -11,7 +11,7 @@ export default class OptionElement extends Component<
   constructor(props: OptionElementProps) {
     super(props);
     this.state = {
-      value: props.variants[0],
+      value: '',
     };
   }
 
@@ -27,11 +27,12 @@ export default class OptionElement extends Component<
       <div className="meal-box">
         <p className="meal__label">Your favorite meal: </p>
         <select
-          className="meal__select"
+          className={`meal__select ${error ? 'error-field' : ''}`}
+          placeholder={variants[0]}
           ref={refTo}
           name={name}
           id={id}
-          value={value}
+          // value={value}
           onChange={(event: React.ChangeEvent<HTMLSelectElement>) => {
             onChange(event);
             this.setState({ value: event.target.value });

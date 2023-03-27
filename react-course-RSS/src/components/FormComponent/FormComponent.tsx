@@ -13,15 +13,15 @@ export default class FormComponent extends Component<
   unknown,
   FormComponentState
 > {
-  nameField: React.RefObject<HTMLInputElement>;
-
-  lastNameField: React.RefObject<HTMLInputElement>;
-
-  birthDayField: React.RefObject<HTMLInputElement>;
-
-  mealOption: React.RefObject<HTMLSelectElement>;
-
-  switcherField: React.RefObject<HTMLInputElement>;
+  public allRefs: {
+    wholeForm: React.RefObject<HTMLFormElement>;
+    nameField: React.RefObject<HTMLInputElement>;
+    lastNameField: React.RefObject<HTMLInputElement>;
+    birthDayField: React.RefObject<HTMLInputElement>;
+    mealOption: React.RefObject<HTMLSelectElement>;
+    switcherField: React.RefObject<HTMLInputElement>;
+    fileField: React.RefObject<HTMLInputElement>;
+  };
 
   constructor(props: unknown) {
     super(props);
@@ -31,48 +31,53 @@ export default class FormComponent extends Component<
       lastName: '',
       birthDay: '',
       meal: '--select your favorite meal--',
+      file: null,
+      switcher: false,
       errorName: false,
       errorLastName: false,
       errorBirthDay: false,
       errorMeal: false,
       errorSwitcher: false,
+      errorFile: false,
     };
 
-    this.nameField = createRef();
-    this.lastNameField = createRef();
-    this.birthDayField = createRef();
-    this.mealOption = createRef();
-    this.switcherField = createRef();
+    this.allRefs = {
+      wholeForm: createRef(),
+      nameField: createRef(),
+      lastNameField: createRef(),
+      birthDayField: createRef(),
+      mealOption: createRef(),
+      switcherField: createRef(),
+      fileField: createRef(),
+    };
 
     this.handlerSubmit = this.handlerSubmit.bind(this);
     this.handlerChange = this.handlerChange.bind(this);
+    this.handleSwitcher = this.handleSwitcher.bind(this);
     this.validateForm = this.validateForm.bind(this);
+    this.resetForm = this.resetForm.bind(this);
   }
 
   handlerSubmit(event: React.FormEvent<HTMLFormElement>): void {
     event.preventDefault();
-    this.validateForm();
-    const {
-      errorName,
-      errorLastName,
-      errorMeal,
-      errorSwitcher,
-      errorBirthDay,
-    } = this.state;
-    if (
-      errorName &&
-      errorLastName &&
-      errorMeal &&
-      errorSwitcher &&
-      errorBirthDay
-    ) {
-      console.log(
-        this.nameField.current?.value,
-        this.lastNameField.current?.value,
-        this.birthDayField.current?.value,
-        this.mealOption.current?.value,
-        this.switcherField.current?.checked
-      );
+    const isValid = this.validateForm();
+    // const {
+    //   errorName,
+    //   errorLastName,
+    //   errorMeal,
+    //   errorSwitcher,
+    //   errorBirthDay,
+    //   errorFile,
+    // } = this.state;
+    if (isValid) {
+      const Card = {
+        firstName: this.allRefs.nameField.current?.value,
+        lastName: this.allRefs.lastNameField.current?.value,
+        birthDay: this.allRefs.birthDayField.current?.value,
+        meal: this.allRefs.mealOption.current?.value,
+      };
+      console.log(Card);
+      this.resetForm();
     } else {
       console.log('error');
     }
@@ -81,75 +86,136 @@ export default class FormComponent extends Component<
   handlerChange(
     event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) {
-    if (event.target === this.nameField.current) {
+    if (event.target === this.allRefs.nameField.current) {
       this.setState({ firstName: event.target.value });
-    } else if (event.target === this.lastNameField.current) {
+    }
+    if (event.target === this.allRefs.lastNameField.current) {
       this.setState({ lastName: event.target.value });
-    } else if (event.target === this.birthDayField.current) {
+    }
+    if (event.target === this.allRefs.birthDayField.current) {
       this.setState({ birthDay: event.target.value });
-    } else if (
-      event.target === this.mealOption.current &&
-      this.mealOption.current?.value !== 'default'
+    }
+    if (
+      event.target === this.allRefs.mealOption.current &&
+      this.allRefs.mealOption.current?.value !== 'default'
     ) {
       this.setState({ meal: event.target.value });
-      this.mealOption.current.value = event.target.value;
+      this.allRefs.mealOption.current.value = event.target.value;
+    }
+    if (
+      event.target === this.allRefs.fileField.current &&
+      this.allRefs.fileField.current.files
+    ) {
+      console.log(this.allRefs.fileField.current.files[0]);
     }
   }
 
+  handleSwitcher() {
+    this.setState((prevState) => ({ switcher: !prevState.switcher }));
+  }
+
   validateForm() {
+    let isValid = true;
     this.setState({
       errorName: false,
       errorLastName: false,
       errorBirthDay: false,
       errorMeal: false,
       errorSwitcher: false,
+      errorFile: false,
     });
-    console.log(this.nameField.current.value.length);
 
-    if (this.nameField.current && this.nameField.current.value.trim() === '') {
+    if (
+      this.allRefs.nameField.current &&
+      this.allRefs.nameField.current.value.trim() === ''
+    ) {
       this.setState((prevState) => ({ ...prevState, errorName: true }));
+      isValid = false;
     }
 
     if (
-      this.lastNameField.current &&
-      this.lastNameField.current.value.trim() === ''
+      this.allRefs.lastNameField.current &&
+      this.allRefs.lastNameField.current.value.trim() === ''
     ) {
       this.setState((prevState) => ({ ...prevState, errorLastName: true }));
+      isValid = false;
     }
 
     if (
-      this.birthDayField.current &&
-      this.birthDayField.current.value.trim() === ''
+      this.allRefs.birthDayField.current &&
+      this.allRefs.birthDayField.current.value.trim() === ''
     ) {
       this.setState((prevState) => ({ ...prevState, errorBirthDay: true }));
+      isValid = false;
     }
 
     if (
-      this.mealOption.current &&
-      this.mealOption.current.value === 'default'
+      (this.allRefs.mealOption.current &&
+        this.allRefs.mealOption.current.value === 'default') ||
+      (this.allRefs.mealOption.current &&
+        this.allRefs.mealOption.current.value === '')
     ) {
       this.setState((prevState) => ({ ...prevState, errorMeal: true }));
+      isValid = false;
     }
 
     if (
-      this.switcherField &&
-      this.switcherField.current &&
-      !this.switcherField.current.checked
+      this.allRefs.fileField &&
+      this.allRefs.fileField.current &&
+      this.allRefs.fileField.current.files &&
+      this.allRefs.fileField.current.files.length === 0
+    ) {
+      this.setState((prevState) => ({ ...prevState, errorFile: true }));
+      isValid = false;
+    }
+    if (
+      this.allRefs.switcherField &&
+      this.allRefs.switcherField.current &&
+      !this.allRefs.switcherField.current.checked
     ) {
       this.setState((prevState) => ({ ...prevState, errorSwitcher: true }));
+      isValid = false;
     }
+
+    return isValid;
+  }
+
+  resetForm() {
+    this.setState({
+      firstName: '',
+      lastName: '',
+      birthDay: '',
+      meal: '',
+      file: null,
+      switcher: false,
+    });
+    if (this.allRefs.mealOption.current) {
+      this.allRefs.mealOption.current.value = '';
+    }
+
+    if (this.allRefs.switcherField.current) {
+      this.allRefs.switcherField.current.checked = false;
+    }
+
+    if (this.allRefs.fileField.current?.files) {
+      this.allRefs.fileField.current.value = '';
+    }
+    this.allRefs.wholeForm.current?.value.reset();
   }
 
   render() {
     const {
       firstName,
       lastName,
+      meal,
+      switcher,
       errorName,
       errorLastName,
       birthDay,
       errorBirthDay,
       errorMeal,
       errorSwitcher,
+      errorFile,
     } = this.state;
     return (
       <form onSubmit={this.handlerSubmit} className="form-block">
@@ -157,7 +223,7 @@ export default class FormComponent extends Component<
           type="text"
           value={firstName}
           name="nameInput"
-          refTo={this.nameField}
+          refTo={this.allRefs.nameField}
           id="nameInput"
           placeholder="-- your name --"
           onChange={this.handlerChange}
@@ -169,7 +235,7 @@ export default class FormComponent extends Component<
           type="text"
           value={lastName}
           name="lastNameInput"
-          refTo={this.lastNameField}
+          refTo={this.allRefs.lastNameField}
           id="lastNameInput"
           placeholder="-- your last name --"
           onChange={this.handlerChange}
@@ -180,20 +246,30 @@ export default class FormComponent extends Component<
         <InputText
           type="date"
           value={birthDay}
-          name="birthDate"
-          refTo={this.birthDayField}
+          name="birthDay"
+          refTo={this.allRefs.birthDayField}
           id="birthDayInput"
           placeholder=""
           onChange={this.handlerChange}
           error={errorBirthDay}
           label="Your BirthDay"
         />
+        <InputText
+          type="file"
+          accept="image/jpeg,image/jpg,image/png,image/webp"
+          name="fileUpload"
+          refTo={this.allRefs.fileField}
+          id="fileImg"
+          onChange={this.handlerChange}
+          error={errorFile}
+          label="file upload"
+        />
 
         <OptionElement
-          refTo={this.mealOption}
+          refTo={this.allRefs.mealOption}
           name="meal"
           id="mealSelect"
-          value="favoriteMeal"
+          value={meal}
           variants={[
             '--select your favorite meal--',
             'MeatBalls',
@@ -207,8 +283,9 @@ export default class FormComponent extends Component<
 
         <Switcher
           error={errorSwitcher}
-          refTo={this.switcherField}
-          isToggled={false}
+          refTo={this.allRefs.switcherField}
+          isToggled={switcher}
+          onChange={this.handleSwitcher}
         />
 
         <SubmitButton />

@@ -35,7 +35,8 @@ export interface FormComponentProps {
 
 export interface InputTextProps {
   type: string;
-  value: string;
+  value?: string;
+  accept?: string;
   name: string;
   refTo: React.RefObject<HTMLInputElement>;
   id: string;
@@ -65,10 +66,12 @@ export interface FormComponentState {
   birthDay: string;
   errorBirthDay: boolean;
   meal: string;
+  file: string | null;
   errorMeal: boolean;
+  switcher: boolean;
   errorSwitcher: boolean;
   img?: string | null;
-  errorImg?: boolean;
+  errorFile: boolean;
 }
 
 export interface OptionElementProps {
@@ -85,4 +88,15 @@ export interface OptionElementProps {
 
 export interface OptionElementState {
   value: string;
+}
+
+export interface SwitcherProps {
+  refTo: React.RefObject<HTMLInputElement>;
+  error: boolean;
+  isToggled: boolean;
+  onChange: () => void;
+}
+
+export interface SwitcherState {
+  switchState: boolean;
 }
