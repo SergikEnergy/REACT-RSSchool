@@ -11,9 +11,4 @@ describe('App', () => {
     const container = render(<App />);
     expect(container).toBeTruthy();
   });
-
-  // it('Should render the home page', () => {
-  //   const history = createMemoryHistory();
-  //   const { container, getByTestId } = render();
-  // });
 });

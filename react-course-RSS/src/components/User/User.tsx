@@ -14,8 +14,9 @@ export default class User extends Component<UserProps> {
     const { data } = this.props;
 
     return (
-      <div className="user-cards__item user">
+      <div className="user-cards__item user" data-testid="singleUser">
         <img
+          data-testid="userImg"
           className="user__avatar"
           src={data.image}
           alt={`${data.name} avatar`}

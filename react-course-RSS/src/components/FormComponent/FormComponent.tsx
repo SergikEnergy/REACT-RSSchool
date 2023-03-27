@@ -209,7 +209,11 @@ export default class FormComponent extends Component<
     } = this.state;
 
     return (
-      <form onSubmit={this.handlerSubmit} className="form-block">
+      <form
+        onSubmit={this.handlerSubmit}
+        className="form-block"
+        data-testid="formTag"
+      >
         <InputText
           type="text"
           value={firstName}

@@ -19,7 +19,7 @@ export default class InputText extends Component<InputTextProps, unknown> {
       accept,
     } = this.props;
     const errorBlock = error ? (
-      <div className="error-name error-box">
+      <div className="error-name error-box" data-testid="errorInputId">
         {label.toLowerCase()} should be not empty
       </div>
     ) : (
@@ -30,6 +30,7 @@ export default class InputText extends Component<InputTextProps, unknown> {
       <div className="name-box">
         <p className="name__label">{label}</p>
         <input
+          data-testid="testInputText"
           accept={accept}
           type={type}
           ref={refTo}
