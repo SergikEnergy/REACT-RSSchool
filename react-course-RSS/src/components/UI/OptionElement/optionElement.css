@@ -1,0 +1,38 @@
+.meal-box {
+  padding: 0;
+  width: 100%;
+  font-size: 2rem;
+  line-height: 2rem;
+  font-family: Verdana, Tahoma, sans-serif;
+  color: #801eff;
+  position: relative;
+}
+
+.meal__label {
+  margin: 0 0 5px;
+}
+
+.meal__select {
+  border: none;
+  background-color: rgba(10, 67, 87, 0.5);
+  border-radius: 8px;
+  width: 100%;
+  text-align: center;
+  padding: 5px 10px;
+  color: white;
+  transition: all easy 0.3s;
+  margin-bottom: 25px;
+}
+
+.meal__select:focus,
+.meal__select:target,
+.meal__select:hover {
+  transform: scale(1.01);
+  background-color: rgba(70, 160, 34, 0.5);
+}
+
+.error-meal {
+  position: absolute;
+  top: 55px;
+  left: 0;
+}

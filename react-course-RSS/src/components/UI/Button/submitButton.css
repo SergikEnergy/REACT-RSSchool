@@ -1,0 +1,26 @@
+.submit-block {
+  width: 70%;
+  height: 30px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.submit__button {
+  width: 100%;
+  padding: 10px 15px;
+  border-radius: 10px;
+  border: none;
+  background-color: aqua;
+  color: rgb(16, 3, 189);
+  transition: all easy 0.4s;
+  font-size: 1.7rem;
+  line-height: 1.7rem;
+}
+
+.submit__button:hover,
+.submit__button:target,
+.submit__button:focus {
+  cursor: pointer;
+  transform: scale(1.03);
+}
