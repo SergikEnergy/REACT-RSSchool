@@ -8,16 +8,9 @@ export default class OptionElement extends Component<
   OptionElementProps,
   OptionElementState
 > {
-  constructor(props: OptionElementProps) {
-    super(props);
-    this.state = {
-      value: '',
-    };
-  }
-
   render() {
     const { refTo, id, onChange, name, error, variants } = this.props;
-    const { value } = this.state;
+
     const errorBlock = error ? (
       <div className="error-meal error-box">Please, select some options...</div>
     ) : (
@@ -32,10 +25,8 @@ export default class OptionElement extends Component<
           ref={refTo}
           name={name}
           id={id}
-          // value={value}
           onChange={(event: React.ChangeEvent<HTMLSelectElement>) => {
             onChange(event);
-            this.setState({ value: event.target.value });
           }}
         >
           <option className="meal__select_option" value="default">
