@@ -1,8 +1,6 @@
 import React from 'react';
-// import { BrowserRouter } from 'react-router-dom';
 import { describe, test, expect } from 'vitest';
 import { render } from '@testing-library/react';
-// import { createMemoryHistory } from '@remix-run/router';
 
 import App from './App';
 

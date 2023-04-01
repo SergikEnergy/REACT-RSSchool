@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { NavLink } from 'react-router-dom';
 
 import './header.css';
@@ -9,33 +9,30 @@ const setActiveClass = (props: IActiveLink) =>
     ? 'header_navigation__list_link active_link'
     : 'header_navigation__list_link';
 
-// eslint-disable-next-line react/prefer-stateless-function
-export default class Header extends Component {
-  render() {
-    return (
-      <header className="header">
-        <div className="header_wrapper">
-          <nav className="header_navigation">
-            <ul className="header_navigation__list">
-              <li className="header_navigation__list_item">
-                <NavLink to="/" className={setActiveClass}>
-                  Home
-                </NavLink>
-              </li>
-              <li className="header_navigation__list_item">
-                <NavLink to="/about" className={setActiveClass}>
-                  About
-                </NavLink>
-              </li>
-              <li className="header_navigation__list_item">
-                <NavLink to="/form" className={setActiveClass}>
-                  Form
-                </NavLink>
-              </li>
-            </ul>
-          </nav>
-        </div>
-      </header>
-    );
-  }
+export default function Header() {
+  return (
+    <header className="header">
+      <div className="header_wrapper">
+        <nav className="header_navigation">
+          <ul className="header_navigation__list">
+            <li className="header_navigation__list_item">
+              <NavLink to="/" className={setActiveClass}>
+                Home
+              </NavLink>
+            </li>
+            <li className="header_navigation__list_item">
+              <NavLink to="/about" className={setActiveClass}>
+                About
+              </NavLink>
+            </li>
+            <li className="header_navigation__list_item">
+              <NavLink to="/form" className={setActiveClass}>
+                Form
+              </NavLink>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+  );
 }
