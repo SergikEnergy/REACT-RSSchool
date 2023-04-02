@@ -21,6 +21,7 @@ export default function User(props: UserProps) {
       <p className="user__info">Last Name: {data.lastName}</p>
       <p className="user__info">Birthday: {data.birthDay}</p>
       <p className="user__info">Favorite meal: {data.meal}</p>
+      <p className="user__info">Messenger: {data.social}</p>
     </div>
   );
 }

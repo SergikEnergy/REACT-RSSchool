@@ -26,6 +26,7 @@ export interface IUserCard {
   lastName: string | undefined;
   birthDay: string | undefined;
   meal: string | undefined;
+  social: string;
   image: string;
 }
 export interface FormPageState {
@@ -80,7 +81,7 @@ export interface FormFields {
   lastName: string;
   birthDay: string;
   meal: string;
-  file: string | null;
+  file: FileList | '';
   social: string;
   switcher: boolean;
   img?: string | null;

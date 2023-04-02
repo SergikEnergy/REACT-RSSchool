@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 
-import { FormFields, FormComponentProps } from '../../types';
+import { FormFields, FormComponentProps, IUserCard } from '../../types';
 import InputText from '../UI/InputText/InputText';
 import OptionElement from '../UI/OptionElement/OptionElement';
 import InputRadio from '../UI/InputRadio/InputRadio';
@@ -10,27 +10,15 @@ import SubmitButton from '../UI/Button/SubmitButton';
 
 import './formComponent.css';
 
-const defaultValues = {
-  firstName: '',
-  lastName: '',
-  birthDay: '',
-  meal: '--select your favorite meal--',
-  file: '',
-  social: '',
-  switcher: false,
-  img: null,
-};
-
 export default function FormComponent(props: FormComponentProps) {
   const [loadMessage, setLoadMessage] = useState('');
-  // console.log(props);
+
   const {
     register,
     formState: { errors },
     handleSubmit,
     reset,
   } = useForm<FormFields>({
-    defaultValues,
     mode: 'onSubmit',
     reValidateMode: 'onSubmit',
   });
@@ -39,12 +27,28 @@ export default function FormComponent(props: FormComponentProps) {
     setLoadMessage('Card was created successfully');
     setTimeout(() => {
       setLoadMessage('');
-    }, 2000);
+    }, 1500);
   }
 
   const onSubmit: SubmitHandler<FormFields> = async (data: FormFields) => {
     await loadingHandler();
-    console.log(data);
+
+    const urlToImage =
+      data.file && data.file[0] ? URL.createObjectURL(data.file[0]) : '';
+
+    const dataForTransfer: IUserCard = {
+      id: String(Date.now()),
+      name: data.firstName,
+      lastName: data.lastName,
+      birthDay: data.birthDay,
+      meal: data.meal,
+      social: data.social,
+      image: urlToImage,
+    };
+
+    const { getUserCard } = props;
+    getUserCard(dataForTransfer);
+    reset();
   };
 
   return (
