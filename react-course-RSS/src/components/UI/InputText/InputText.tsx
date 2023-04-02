@@ -12,19 +12,38 @@ interface IInputTextProps {
   errors: FieldErrors<FieldValues>;
   type: string;
   id: string;
-  placeholder: string;
+  placeholder?: string;
+  accept?: string;
   rest: UseFormRegisterReturn;
 }
 
 export default function InputText(props: IInputTextProps) {
-  const { type, placeholder, id, errors, rest } = props;
+  const { type, placeholder, id, errors, accept, rest } = props;
+  let title = '';
+
+  switch (rest.name) {
+    case 'firstName':
+      title = 'Your first name';
+      break;
+    case 'lastName':
+      title = 'Your last name';
+      break;
+    case 'birthDay':
+      title = 'Your birth date';
+      break;
+    case 'file':
+      title = 'Select avatar img';
+      break;
+    default:
+      title = '';
+  }
 
   return (
     <div className="name-box">
-      <p className="name__label">{rest.name}</p>
+      <p className="name__label">{title}</p>
       <input
         data-testid="testInputText"
-        // accept={accept}
+        accept={accept}
         type={type}
         className={`name_input ${
           errors[rest.name]?.message ? 'error-field' : ''
@@ -39,3 +58,8 @@ export default function InputText(props: IInputTextProps) {
     </div>
   );
 }
+
+InputText.defaultProps = {
+  placeholder: '',
+  accept: '',
+};

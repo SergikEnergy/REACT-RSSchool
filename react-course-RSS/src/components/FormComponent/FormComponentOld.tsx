@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { createRef, Component } from 'react';
 
 import { FormComponentState, FormComponentProps } from '../../types';

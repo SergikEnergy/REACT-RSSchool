@@ -1,52 +1,53 @@
-import React, { Component } from 'react';
+import React from 'react';
+import {
+  FieldErrors,
+  FieldValues,
+  UseFormRegisterReturn,
+} from 'react-hook-form';
 
-import { OptionElementProps, OptionElementState } from '../../../types';
 import './optionElement.css';
 
-// eslint-disable-next-line react/prefer-stateless-function
-export default class OptionElement extends Component<
-  OptionElementProps,
-  OptionElementState
-> {
-  render() {
-    const { refTo, id, onChange, name, error, variants } = this.props;
+interface OptionElementProps {
+  variants: string[];
+  id: string;
+  errors: FieldErrors<FieldValues>;
+  rest: UseFormRegisterReturn;
+}
 
-    const errorBlock = error ? (
-      <div className="error-meal error-box">Please, select some options...</div>
-    ) : (
-      ''
-    );
-    return (
-      <div className="meal-box">
-        <p className="meal__label">Your favorite meal: </p>
-        <select
-          className={`meal__select ${error ? 'error-field' : ''}`}
-          placeholder={variants[0]}
-          ref={refTo}
-          name={name}
-          id={id}
-          onChange={(event: React.ChangeEvent<HTMLSelectElement>) => {
-            onChange(event);
-          }}
-        >
-          <option className="meal__select_option" value="default">
-            {variants[0]}
-          </option>
-          <option className="meal__select_option" value={variants[1]}>
-            {variants[1]}
-          </option>
-          <option className="meal__select_option" value={variants[2]}>
-            {variants[2]}
-          </option>
-          <option className="meal__select_option" value={variants[3]}>
-            {variants[3]}
-          </option>
-          <option className="meal__select_option" value={variants[4]}>
-            {variants[4]}
-          </option>
-        </select>
-        {errorBlock}
+export default function OptionElement(props: OptionElementProps) {
+  const { id, errors, variants, rest } = props;
+  const title = rest.name === 'meal' ? 'Your favorite meal' : '';
+
+  return (
+    <div className="meal-box">
+      <p className="meal__label">{title}</p>
+      <select
+        className={`meal__select ${
+          errors[rest.name]?.message ? 'error-field' : ''
+        }`}
+        id={id}
+        defaultValue={variants[0]}
+        {...rest}
+      >
+        <option className="meal__select_option" value={variants[0]}>
+          {variants[0]}
+        </option>
+        <option className="meal__select_option" value={variants[1]}>
+          {variants[1]}
+        </option>
+        <option className="meal__select_option" value={variants[2]}>
+          {variants[2]}
+        </option>
+        <option className="meal__select_option" value={variants[3]}>
+          {variants[3]}
+        </option>
+        <option className="meal__select_option" value={variants[4]}>
+          {variants[4]}
+        </option>
+      </select>
+      <div className="error-meal error-box" data-testid="errorInputId">
+        {errors[rest.name]?.message ? `${errors[rest.name]?.message}` : ''}
       </div>
-    );
-  }
+    </div>
+  );
 }

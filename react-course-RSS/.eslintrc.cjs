@@ -24,7 +24,7 @@ module.exports = {
     'react/jsx-props-no-spreading': 'off',
     'no-console': 'warn',
     'prefer-const': 'error',
-    indent: ['warn', 2],
+    indent: 'off',
     'react-hooks/rules-of-hooks': 'error',
     'react-hooks/exhaustive-deps': 'warn',
     'comma-dangle': ['error', 'only-multiline'],
