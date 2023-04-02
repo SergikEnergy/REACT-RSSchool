@@ -4,7 +4,7 @@ import './aboutPage.css';
 
 export default function AboutPage() {
   return (
-    <main className="about_page" data-testId="about-page">
+    <main className="about_page" data-testid="about-page">
       <div className="about__wrapper">
         <h3 className="about__title">About Page</h3>
         <p className="about__intro">Here will be some information about us</p>
