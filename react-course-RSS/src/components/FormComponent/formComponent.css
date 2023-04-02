@@ -6,3 +6,11 @@
   flex-direction: column;
   margin: auto;
 }
+
+.load-card {
+  color: green;
+  font-size: 2rem;
+  font-family: Verdana, Tahoma, sans-serif;
+  line-height: 2rem;
+  padding: 1%;
+}

@@ -1,52 +1,39 @@
-import React, { Component } from 'react';
+import React from 'react';
+import {
+  FieldErrors,
+  FieldValues,
+  UseFormRegisterReturn,
+} from 'react-hook-form';
 
-import { SwitcherProps, SwitcherState } from '../../../types';
 import './switcher.css';
 
-export default class Switcher extends Component<SwitcherProps, SwitcherState> {
-  constructor(props: SwitcherProps) {
-    super(props);
-    // eslint-disable-next-line react/no-unused-state
-    this.state = { switchState: props.isToggled };
-    this.handleOnChange = this.handleOnChange.bind(this);
-  }
+interface SwitcherProps {
+  errors: FieldErrors<FieldValues>;
+  rest: UseFormRegisterReturn;
+}
 
-  handleOnChange() {
-    this.setState((prevState) => ({ switchState: !prevState.switchState }));
-  }
+export default function Switcher(props: SwitcherProps) {
+  const { rest, errors } = props;
 
-  render() {
-    const { error, refTo, onChange } = this.props;
-
-    const errorBlock = error ? (
-      <div className="error-switcher error-box">
-        Please, agree with privacy policy
+  return (
+    <div className="switch-box">
+      <div className="switch-box_row">
+        <label htmlFor="switcher" className="switch">
+          <input
+            type="checkbox"
+            id="switcher"
+            className={`switch__check ${
+              errors[rest.name]?.message ? 'error-field' : ''
+            }`}
+            {...rest}
+          />
+          <span className="slider" />
+        </label>
+        <div className="switch__description">I agree with privacy policy</div>
       </div>
-    ) : (
-      ''
-    );
-    return (
-      <div className="switch-box">
-        <div className="switch-box_row">
-          <label htmlFor="switcher" className="switch">
-            <input
-              id="switcher"
-              className={`switch__check ${error ? 'error-field' : ''}`}
-              ref={refTo}
-              type="checkbox"
-              // checked={switchState}
-              onChange={() => {
-                this.handleOnChange();
-                onChange();
-              }}
-            />
-            <span className="slider" />
-          </label>
-          <div className="switch__description">I agree with privacy policy</div>
-        </div>
-
-        {errorBlock}
+      <div className="error-switcher error-box" data-testid="errorInputId">
+        {errors[rest.name]?.message ? `${errors[rest.name]?.message}` : ''}
       </div>
-    );
-  }
+    </div>
+  );
 }

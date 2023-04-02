@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 
 import { FormFields, FormComponentProps } from '../../types';
 import InputText from '../UI/InputText/InputText';
 import OptionElement from '../UI/OptionElement/OptionElement';
-// import Switcher from '../UI/Switcher/Switcher';
+import InputRadio from '../UI/InputRadio/InputRadio';
+import Switcher from '../UI/Switcher/Switcher';
 import SubmitButton from '../UI/Button/SubmitButton';
 
 import './formComponent.css';
@@ -15,11 +16,13 @@ const defaultValues = {
   birthDay: '',
   meal: '--select your favorite meal--',
   file: '',
+  social: '',
   switcher: false,
   img: null,
 };
 
 export default function FormComponent(props: FormComponentProps) {
+  const [loadMessage, setLoadMessage] = useState('');
   // console.log(props);
   const {
     register,
@@ -32,14 +35,15 @@ export default function FormComponent(props: FormComponentProps) {
     reValidateMode: 'onSubmit',
   });
 
-  // async function loadingHandler(): Promise<void> {
-  //   setLoadMessage('Card was created successfully');
-  //   setTimeout(() => {
-  //     setLoadMessage('');
-  //   }, 2000);
-  // }
+  async function loadingHandler(): Promise<void> {
+    setLoadMessage('Card was created successfully');
+    setTimeout(() => {
+      setLoadMessage('');
+    }, 2000);
+  }
 
-  const onSubmit: SubmitHandler<FormFields> = (data: FormFields) => {
+  const onSubmit: SubmitHandler<FormFields> = async (data: FormFields) => {
+    await loadingHandler();
     console.log(data);
   };
 
@@ -95,7 +99,7 @@ export default function FormComponent(props: FormComponentProps) {
                 const errorYear =
                   year - 2 < Number(value.slice(0, 4))
                     ? 'Your birth year must be 2 points less than current'
-                    : '';
+                    : undefined;
 
                 return errorYear;
               },
@@ -131,67 +135,36 @@ export default function FormComponent(props: FormComponentProps) {
             required: `Field should be not empty`,
             validate: {
               atLeastOne: (value: string) => {
-                console.log(value);
                 const checkError = value === '--select your favorite meal--';
 
-                return checkError ? 'You must choice one point' : '';
+                return checkError ? 'You must choice one point' : undefined;
               },
             },
           }),
         }}
       />
 
+      <InputRadio
+        title="Select social network for contact"
+        errors={errors}
+        rest={{
+          ...register('social', {
+            required: `Please choose some network`,
+          }),
+        }}
+      />
+
+      <Switcher
+        errors={errors}
+        rest={{
+          ...register('switcher', {
+            required: `Please agree with policy`,
+          }),
+        }}
+      />
+
       <SubmitButton />
-      {/* <div className="load-card">{loadMessage}</div> */}
+      <div className="load-card">{loadMessage}</div>
     </form>
   );
 }
-
-/*
-    return (
-      <form
-        onSubmit={this.handlerSubmit}
-        className="form-block"
-        data-testid="formTag"
-      >
-       
-        <InputText
-          type="file"
-          accept="image/jpeg,image/jpg,image/png,image/webp"
-          name="fileUpload"
-          refTo={this.allRefs.fileField}
-          id="fileImg"
-          onChange={this.handlerChange}
-          error={errorFile}
-          label="file upload"
-        />
-
-        <OptionElement
-          refTo={this.allRefs.mealOption}
-          name="meal"
-          id="mealSelect"
-          value={meal}
-          variants={[
-            '--select your favorite meal--',
-            'MeatBalls',
-            'Vegetables',
-            'Crisps',
-            'FruitPie',
-          ]}
-          error={errorMeal}
-          onChange={this.handlerChange}
-        />
-
-        <Switcher
-          error={errorSwitcher}
-          refTo={this.allRefs.switcherField}
-          isToggled={switcher}
-          onChange={this.handleSwitcher}
-        />
-
-        <SubmitButton />
-      </form>
-    );
-  }
-}
-*/

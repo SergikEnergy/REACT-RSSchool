@@ -81,6 +81,7 @@ export interface FormFields {
   birthDay: string;
   meal: string;
   file: string | null;
+  social: string;
   switcher: boolean;
   img?: string | null;
 }
