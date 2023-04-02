@@ -1,40 +1,30 @@
-/* eslint-disable react/no-unused-state */
-import React, { Component } from 'react';
+import React, { useState, useCallback } from 'react';
 import FormComponent from '../../components/FormComponent/FormComponent';
 import UsersCardList from '../../components/UsersCardList/UsersCardList';
 
-import { FormPageState, IUserCard } from '../../types';
+import { IUserCard } from '../../types';
 import './formPage.css';
 
-// eslint-disable-next-line react/prefer-stateless-function
-class FormPage extends Component<unknown, FormPageState> {
-  constructor(props: unknown) {
-    super(props);
-    this.state = {
-      userCards: [],
-    };
-    this.getUserCard = this.getUserCard.bind(this);
-  }
+export default function FormPage() {
+  const [userCards, setUserCards] = useState<IUserCard[]>([]);
 
-  getUserCard(user: IUserCard) {
-    const { userCards } = this.state;
-    this.setState({ userCards: [...userCards, user] });
-  }
+  const getUserCard = useCallback(
+    (user: IUserCard) => {
+      console.log('render callback');
+      setUserCards([...userCards, user]);
+    },
+    [userCards]
+  );
 
-  render() {
-    const { userCards } = this.state;
-    return (
-      <main className="form-page" data-testid="form-page">
-        <h2 className="form__title">
-          Please, fill in this blank to create new user
-        </h2>
-        <div className="form__wrapper">
-          <FormComponent getUserCard={this.getUserCard} />
-          <UsersCardList cards={userCards} />
-        </div>
-      </main>
-    );
-  }
+  return (
+    <main className="form-page" data-testid="form-page">
+      <h2 className="form__title">
+        Please, fill in this blank to create new user
+      </h2>
+      <div className="form__wrapper">
+        <FormComponent getUserCard={getUserCard} />
+        <UsersCardList cards={userCards} />
+      </div>
+    </main>
+  );
 }
-
-export default FormPage;
