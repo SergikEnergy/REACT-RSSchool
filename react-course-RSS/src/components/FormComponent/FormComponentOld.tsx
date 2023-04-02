@@ -1,64 +1,14 @@
-import React from 'react';
-import { SubmitHandler, useForm } from 'react-hook-form';
+import React, { createRef, Component } from 'react';
 
-import { FormFields, FormComponentProps } from '../../types';
+import { FormComponentState, FormComponentProps } from '../../types';
 import InputText from '../UI/InputText/InputText';
-// import OptionElement from '../UI/OptionElement/OptionElement';
-// import Switcher from '../UI/Switcher/Switcher';
+import OptionElement from '../UI/OptionElement/OptionElement';
+import Switcher from '../UI/Switcher/Switcher';
 import SubmitButton from '../UI/Button/SubmitButton';
 
 import './formComponent.css';
 
-const defaultValues = {
-  firstName: '',
-  lastName: '',
-  birthDay: '',
-  meal: '--select your favorite meal--',
-  file: '',
-  switcher: false,
-  img: null,
-};
-
-export default function FormComponent(props: FormComponentProps) {
-  console.log(props);
-  const {
-    register,
-    formState: { errors },
-    handleSubmit,
-  } = useForm<FormFields>({ defaultValues, mode: 'onSubmit' });
-
-  const onSubmit: SubmitHandler<FormFields> = (data: FormFields) => {
-    console.log(data);
-  };
-
-  return (
-    <form
-      onSubmit={handleSubmit(onSubmit)}
-      className="form-block"
-      data-testid="formTag"
-    >
-      <InputText
-        type="text"
-        id="nameInput"
-        placeholder="-- your name --"
-        errors={errors}
-        rest={{
-          ...register('firstName', {
-            required: `Field should be not empty`,
-            minLength: {
-              value: 4,
-              message: 'Minimum 4 letters, please',
-            },
-          }),
-        }}
-      />
-
-      <SubmitButton />
-    </form>
-  );
-}
-
-/*
+// eslint-disable-next-line react/prefer-stateless-function
 export default class FormComponent extends Component<
   FormComponentProps,
   FormComponentState
@@ -338,4 +288,3 @@ export default class FormComponent extends Component<
     );
   }
 }
-*/

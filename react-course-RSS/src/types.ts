@@ -75,6 +75,15 @@ export interface FormComponentState {
   img?: string | null;
   errorFile: boolean;
 }
+export interface FormFields {
+  firstName: string;
+  lastName: string;
+  birthDay: string;
+  meal: string;
+  file: string | null;
+  switcher: boolean;
+  img?: string | null;
+}
 
 export interface OptionElementProps {
   name: string;

@@ -10,7 +10,6 @@ export default function FormPage() {
 
   const getUserCard = useCallback(
     (user: IUserCard) => {
-      console.log('render callback');
       setUserCards([...userCards, user]);
     },
     [userCards]
