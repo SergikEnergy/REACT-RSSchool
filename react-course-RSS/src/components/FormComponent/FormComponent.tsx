@@ -20,12 +20,16 @@ const defaultValues = {
 };
 
 export default function FormComponent(props: FormComponentProps) {
-  console.log(props);
+  // console.log(props);
   const {
     register,
     formState: { errors },
     handleSubmit,
-  } = useForm<FormFields>({ defaultValues, mode: 'onSubmit' });
+  } = useForm<FormFields>({
+    defaultValues,
+    mode: 'onSubmit',
+    reValidateMode: 'onSubmit',
+  });
 
   const onSubmit: SubmitHandler<FormFields> = (data: FormFields) => {
     console.log(data);

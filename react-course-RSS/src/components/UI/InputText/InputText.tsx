@@ -10,24 +10,14 @@ import './inputText.css';
 
 interface IInputTextProps {
   errors: FieldErrors<FieldValues>;
-  rest: UseFormRegisterReturn;
   type: string;
   id: string;
   placeholder: string;
+  rest: UseFormRegisterReturn;
 }
 
 export default function InputText(props: IInputTextProps) {
-  console.log(props);
   const { type, placeholder, id, errors, rest } = props;
-
-  console.log(errors);
-  // const errorBlock = error ? (
-  //   <div className="error-name error-box" data-testid="errorInputId">
-  //     {error}
-  //   </div>
-  // ) : (
-  //   ''
-  // );
 
   return (
     <div className="name-box">
@@ -40,12 +30,8 @@ export default function InputText(props: IInputTextProps) {
           errors[rest.name]?.message ? 'error-field' : ''
         }`}
         id={id}
-        name={rest.name}
         placeholder={placeholder}
-        onChange={(event) => {
-          rest.onChange(event);
-          console.log(event);
-        }}
+        {...rest}
       />
       <div className="error-name error-box" data-testid="errorInputId">
         {errors[rest.name]?.message ? `${errors[rest.name]?.message}` : ''}
@@ -53,46 +39,3 @@ export default function InputText(props: IInputTextProps) {
     </div>
   );
 }
-
-// export default class InputText extends Component<InputTextProps, unknown> {
-//   render() {
-//     const {
-//       type,
-//       value,
-//       refTo,
-//       id,
-//       placeholder,
-//       onChange,
-//       name,
-//       error,
-//       label,
-//       accept,
-//     } = this.props;
-//     const errorBlock = error ? (
-//       <div className="error-name error-box" data-testid="errorInputId">
-//         {label.toLowerCase()} should be not empty
-//       </div>
-//     ) : (
-//       ''
-//     );
-
-//     return (
-//       <div className="name-box">
-//         <p className="name__label">{label}</p>
-//         <input
-//           data-testid="testInputText"
-//           accept={accept}
-//           type={type}
-//           ref={refTo}
-//           className={`name_input ${error ? 'error-field' : ''}`}
-//           id={id}
-//           name={name}
-//           value={value}
-//           placeholder={placeholder}
-//           onChange={onChange}
-//         />
-//         {errorBlock}
-//       </div>
-//     );
-//   }
-// }
