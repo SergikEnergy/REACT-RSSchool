@@ -22,6 +22,7 @@ export default function OptionElement(props: OptionElementProps) {
     <div className="meal-box">
       <p className="meal__label">{title}</p>
       <select
+        data-testid="mealSelect"
         className={`meal__select ${
           errors[rest.name]?.message ? 'error-field' : ''
         }`}

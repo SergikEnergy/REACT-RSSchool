@@ -26,6 +26,7 @@ export default function InputRadio(props: InputRadioProps) {
             return (
               <div className="social__elem" key={elem}>
                 <input
+                  data-testid={`${elem}Test`}
                   type="radio"
                   className="social__elem_radio"
                   id={`social${elem}`}

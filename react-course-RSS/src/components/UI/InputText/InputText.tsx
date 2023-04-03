@@ -42,7 +42,7 @@ export default function InputText(props: IInputTextProps) {
     <div className="name-box">
       <p className="name__label">{title}</p>
       <input
-        data-testid="testInputText"
+        data-testid={`${rest.name}Test`}
         accept={accept}
         type={type}
         className={`name_input ${
@@ -52,7 +52,7 @@ export default function InputText(props: IInputTextProps) {
         placeholder={placeholder}
         {...rest}
       />
-      <div className="error-name error-box" data-testid="errorInputId">
+      <div className="error-name error-box" data-testid={`${rest.name}Error`}>
         {errors[rest.name]?.message ? `${errors[rest.name]?.message}` : ''}
       </div>
     </div>

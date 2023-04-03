@@ -22,6 +22,7 @@ export default function Switcher(props: SwitcherProps) {
           <input
             type="checkbox"
             id="switcher"
+            data-testid="switcherTest"
             className={`switch__check ${
               errors[rest.name]?.message ? 'error-field' : ''
             }`}
@@ -31,7 +32,7 @@ export default function Switcher(props: SwitcherProps) {
         </label>
         <div className="switch__description">I agree with privacy policy</div>
       </div>
-      <div className="error-switcher error-box" data-testid="errorInputId">
+      <div className="error-switcher error-box" data-testid="switcherError">
         {errors[rest.name]?.message ? `${errors[rest.name]?.message}` : ''}
       </div>
     </div>
