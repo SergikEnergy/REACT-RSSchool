@@ -7,6 +7,7 @@ import UsersCardList from './UsersCardList';
 
 const fakeUserList: IUserCard[] = [
   {
+    social: 'Instagram',
     id: 'id1',
     name: 'Ivan',
     lastName: 'Ivanov',
@@ -16,6 +17,7 @@ const fakeUserList: IUserCard[] = [
   },
   {
     id: 'id2',
+    social: 'Telegram',
     name: 'Petr',
     lastName: 'Petrov',
     birthDay: '12-03-1990',
@@ -24,6 +26,7 @@ const fakeUserList: IUserCard[] = [
   },
   {
     id: 'id3',
+    social: 'Facebook',
     name: 'Serg',
     lastName: 'Sergeev',
     birthDay: '12-03-1990',

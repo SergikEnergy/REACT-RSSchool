@@ -7,6 +7,7 @@ import { IUserCard } from '../../types';
 import User from './User';
 
 const fakeUser: IUserCard = {
+  social: 'Instagram',
   id: 'id1',
   name: 'Ivan',
   lastName: 'Ivanov',
