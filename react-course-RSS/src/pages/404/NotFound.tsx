@@ -8,9 +8,7 @@ export default function NotFound() {
   return (
     <main className="not-found">
       <h3 className="not-found__title">Oops, page not found</h3>
-      <p className="not-found__body">
-        Here not found something useful, check your path, please
-      </p>
+      <p className="not-found__body">Here not found something useful, check your path, please</p>
       <div className="not-found__img">
         <img src={img404} alt="not found page img" data-testid="imgNotFound" />
       </div>

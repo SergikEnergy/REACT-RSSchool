@@ -1,9 +1,5 @@
 import React from 'react';
-import {
-  FieldErrors,
-  FieldValues,
-  UseFormRegisterReturn,
-} from 'react-hook-form';
+import { FieldErrors, FieldValues, UseFormRegisterReturn } from 'react-hook-form';
 
 import './optionElement.css';
 
@@ -23,9 +19,7 @@ export default function OptionElement(props: OptionElementProps) {
       <p className="meal__label">{title}</p>
       <select
         data-testid="mealSelect"
-        className={`meal__select ${
-          errors[rest.name]?.message ? 'error-field' : ''
-        }`}
+        className={`meal__select ${errors[rest.name]?.message ? 'error-field' : ''}`}
         id={id}
         defaultValue={variants[0]}
         {...rest}

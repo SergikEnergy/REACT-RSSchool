@@ -44,9 +44,7 @@ export interface InputTextProps {
   refTo: React.RefObject<HTMLInputElement>;
   id: string;
   placeholder?: string;
-  onChange: (
-    event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
-  ) => void;
+  onChange: (event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => void;
   error: boolean;
   label: string;
 }
@@ -94,9 +92,7 @@ export interface OptionElementProps {
   variants: string[];
   error: boolean;
   refTo: React.RefObject<HTMLSelectElement>;
-  onChange: (
-    event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
-  ) => void;
+  onChange: (event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => void;
 }
 
 export interface OptionElementState {

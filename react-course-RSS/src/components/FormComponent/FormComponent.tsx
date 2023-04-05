@@ -33,8 +33,7 @@ export default function FormComponent(props: FormComponentProps) {
   const onSubmit: SubmitHandler<FormFields> = async (data: FormFields) => {
     await loadingHandler();
 
-    const urlToImage =
-      data.file && data.file[0] ? URL.createObjectURL(data.file[0]) : '';
+    const urlToImage = data.file && data.file[0] ? URL.createObjectURL(data.file[0]) : '';
 
     const dataForTransfer: IUserCard = {
       id: String(Date.now()),
@@ -52,11 +51,7 @@ export default function FormComponent(props: FormComponentProps) {
   };
 
   return (
-    <form
-      onSubmit={handleSubmit(onSubmit)}
-      className="form-block"
-      data-testid="formTag"
-    >
+    <form onSubmit={handleSubmit(onSubmit)} className="form-block" data-testid="formTag">
       <InputText
         type="text"
         id="nameInput"
@@ -100,10 +95,7 @@ export default function FormComponent(props: FormComponentProps) {
               olderTenYears: (value: string) => {
                 const year = new Date().getFullYear();
 
-                const errorYear =
-                  year - 2 < Number(value.slice(0, 4))
-                    ? 'Your birth year must be 2 points less than current'
-                    : undefined;
+                const errorYear = year - 2 < Number(value.slice(0, 4)) ? 'Your birth year must be 2 points less than current' : undefined;
 
                 return errorYear;
               },
@@ -126,13 +118,7 @@ export default function FormComponent(props: FormComponentProps) {
 
       <OptionElement
         id="mealSelect"
-        variants={[
-          '--select your favorite meal--',
-          'MeatBalls',
-          'Vegetables',
-          'Crisps',
-          'FruitPie',
-        ]}
+        variants={['--select your favorite meal--', 'MeatBalls', 'Vegetables', 'Crisps', 'FruitPie']}
         errors={errors}
         rest={{
           ...register('meal', {

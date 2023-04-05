@@ -1,9 +1,5 @@
 import React from 'react';
-import {
-  FieldErrors,
-  FieldValues,
-  UseFormRegisterReturn,
-} from 'react-hook-form';
+import { FieldErrors, FieldValues, UseFormRegisterReturn } from 'react-hook-form';
 
 import './switcher.css';
 
@@ -23,9 +19,7 @@ export default function Switcher(props: SwitcherProps) {
             type="checkbox"
             id="switcher"
             data-testid="switcherTest"
-            className={`switch__check ${
-              errors[rest.name]?.message ? 'error-field' : ''
-            }`}
+            className={`switch__check ${errors[rest.name]?.message ? 'error-field' : ''}`}
             {...rest}
           />
           <span className="slider" />

@@ -1,9 +1,5 @@
 import React from 'react';
-import {
-  FieldErrors,
-  FieldValues,
-  UseFormRegisterReturn,
-} from 'react-hook-form';
+import { FieldErrors, FieldValues, UseFormRegisterReturn } from 'react-hook-form';
 
 import './inputRadio.css';
 
@@ -25,14 +21,7 @@ export default function InputRadio(props: InputRadioProps) {
           {variants.map((elem) => {
             return (
               <div className="social__elem" key={elem}>
-                <input
-                  data-testid={`${elem}Test`}
-                  type="radio"
-                  className="social__elem_radio"
-                  id={`social${elem}`}
-                  value={elem}
-                  {...rest}
-                />
+                <input data-testid={`${elem}Test`} type="radio" className="social__elem_radio" id={`social${elem}`} value={elem} {...rest} />
                 <label className="social__elem_label" htmlFor={`social${elem}`}>
                   {elem}
                 </label>

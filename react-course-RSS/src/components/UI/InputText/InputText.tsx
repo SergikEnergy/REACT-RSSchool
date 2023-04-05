@@ -1,10 +1,6 @@
 import React from 'react';
 
-import {
-  FieldErrors,
-  FieldValues,
-  UseFormRegisterReturn,
-} from 'react-hook-form';
+import { FieldErrors, FieldValues, UseFormRegisterReturn } from 'react-hook-form';
 
 import './inputText.css';
 
@@ -45,9 +41,7 @@ export default function InputText(props: IInputTextProps) {
         data-testid={`${rest.name}Test`}
         accept={accept}
         type={type}
-        className={`name_input ${
-          errors[rest.name]?.message ? 'error-field' : ''
-        }`}
+        className={`name_input ${errors[rest.name]?.message ? 'error-field' : ''}`}
         id={id}
         placeholder={placeholder}
         {...rest}

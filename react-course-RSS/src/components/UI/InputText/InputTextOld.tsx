@@ -6,18 +6,7 @@ import './inputText.css';
 // eslint-disable-next-line react/prefer-stateless-function
 export default class InputText extends Component<InputTextProps, unknown> {
   render() {
-    const {
-      type,
-      value,
-      refTo,
-      id,
-      placeholder,
-      onChange,
-      name,
-      error,
-      label,
-      accept,
-    } = this.props;
+    const { type, value, refTo, id, placeholder, onChange, name, error, label, accept } = this.props;
     const errorBlock = error ? (
       <div className="error-name error-box" data-testid="errorInputId">
         {label.toLowerCase()} should be not empty

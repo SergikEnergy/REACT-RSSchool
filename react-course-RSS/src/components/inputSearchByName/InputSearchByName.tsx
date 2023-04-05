@@ -11,8 +11,7 @@ const dataArray = [...fakeData];
 export default function InputSearchByName() {
   const initialSearch = localStorage.getItem('searchParameters') || '';
 
-  const [searchParameters, setSearchParameters] =
-    useState<string>(initialSearch);
+  const [searchParameters, setSearchParameters] = useState<string>(initialSearch);
 
   const searchValue = useRef(searchParameters);
 
@@ -54,20 +53,10 @@ export default function InputSearchByName() {
           onChange={changeHandler}
         />
         <div className="sort__field_icon">
-          <img
-            src={searchIcon}
-            alt="search items icon"
-            className="sort__field_icon-img"
-          />
+          <img src={searchIcon} alt="search items icon" className="sort__field_icon-img" />
         </div>
       </div>
-      <CardList
-        data={
-          searchParameters && searchParameters.length > 0
-            ? filterDataArray(searchParameters)
-            : fakeData
-        }
-      />
+      <CardList data={searchParameters && searchParameters.length > 0 ? filterDataArray(searchParameters) : fakeData} />
     </>
   );
 }

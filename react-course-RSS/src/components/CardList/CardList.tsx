@@ -11,9 +11,7 @@ export default function CardList(props: CardListProps) {
     <div className="cards-list">
       <div className="cards-list_wrapper">
         {data && data.length > 0 ? (
-          data.map((item) =>
-            item && item.id ? <Card key={item.id} products={item} /> : ''
-          )
+          data.map((item) => (item && item.id ? <Card key={item.id} products={item} /> : ''))
         ) : (
           <div className="cards-list_not-found" data-testid="emptyCards">
             Oops, nothing was founded!

@@ -4,10 +4,7 @@ import { NavLink } from 'react-router-dom';
 import './header.css';
 import IActiveLink from '../../types';
 
-const setActiveClass = (props: IActiveLink) =>
-  props.isActive
-    ? 'header_navigation__list_link active_link'
-    : 'header_navigation__list_link';
+const setActiveClass = (props: IActiveLink) => (props.isActive ? 'header_navigation__list_link active_link' : 'header_navigation__list_link');
 
 export default function Header() {
   return (
