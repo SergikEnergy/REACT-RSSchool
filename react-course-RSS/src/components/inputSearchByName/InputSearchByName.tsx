@@ -4,16 +4,18 @@ import { IData } from '../../types';
 import fakeData from '../../data/fakeData';
 import searchIcon from '../../assets/img/search_icon.png';
 import './inputSearchByName.css';
-import CardList from '../CardList/CardList';
+
+interface InputSearchByNameProps {
+  searchParams: string;
+  onChangeSearch: (value: string) => void;
+}
 
 const dataArray = [...fakeData];
 
-export default function InputSearchByName() {
-  const initialSearch = localStorage.getItem('searchParameters') || '';
-
-  const [searchParameters, setSearchParameters] = useState<string>(initialSearch);
-
-  const searchValue = useRef(searchParameters);
+export default function InputSearchByName(props: InputSearchByNameProps) {
+  const { searchParams, onChangeSearch } = props;
+  console.log(searchParams, onChangeSearch);
+  const searchValue = useRef(searchParams);
 
   useEffect(() => {
     return () => {
@@ -22,8 +24,8 @@ export default function InputSearchByName() {
   }, []);
 
   useEffect(() => {
-    searchValue.current = searchParameters;
-  }, [searchParameters]);
+    searchValue.current = searchParams;
+  }, [searchParams]);
 
   function filterDataArray(param: string): IData[] | undefined[] {
     if (param && param.length > 0) {
