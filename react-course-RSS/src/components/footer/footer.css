@@ -1,0 +1,60 @@
+footer {
+  width: 100%;
+  box-sizing: border-box;
+  font-size: 2em;
+  line-height: 2.2rem;
+  font-family: Verdana, Tahoma, sans-serif;
+  font-weight: 400;
+  color: white;
+  margin: 0 auto;
+  background-color: #202020;
+  padding: 1%;
+}
+
+.footer_wrapper {
+  width: 100%;
+  max-width: 95%;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.footer__repo,
+.footer__course {
+  padding: 0 10%;
+}
+
+.footer_author_link,
+.footer__course_link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-decoration: none;
+  color: white;
+  transition: all easy 0.5s;
+}
+.footer_author_link:hover,
+.footer_author_link:focus,
+.footer_author_link:target,
+.footer__course_link:hover,
+.footer__course_link:focus,
+.footer__course_link:target {
+  color: rgb(31, 72, 255);
+  transform: scale(1.03);
+}
+
+.footer__repo_img,
+.footer__course_link_img {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  margin-right: 1%;
+}
+
+.footer__repo_name,
+.footer__course_link_name {
+  display: inline-block;
+  font-size: 1.6rem;
+  line-height: 1.6rem;
+  white-space: nowrap;
+}

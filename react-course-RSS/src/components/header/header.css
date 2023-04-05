@@ -1,0 +1,51 @@
+.header {
+  width: 100%;
+  box-sizing: border-box;
+  font-size: 2.8rem;
+  line-height: 3rem;
+  font-family: Verdana, Tahoma, sans-serif;
+  font-weight: 500;
+  color: white;
+  margin: 0 auto;
+  background-color: #202020;
+  padding: 0.3%;
+}
+
+.header_wrapper {
+  max-width: 95%;
+  margin: auto;
+}
+
+.header_navigation {
+  margin: 10px 20px;
+}
+
+.header_navigation__list {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  list-style-type: none;
+}
+
+.header_navigation__list_item {
+  width: 30%;
+  text-align: center;
+  text-decoration: none;
+}
+
+.header_navigation__list_link {
+  text-decoration: none;
+  color: white;
+  transition: all ease 0.3s;
+}
+
+.header_navigation__list_link:hover {
+  transform: scale(1.04);
+  color: rgb(31, 72, 255);
+}
+
+.active_link {
+  color: rgb(40, 201, 0);
+}

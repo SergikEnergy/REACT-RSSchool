@@ -1,0 +1,41 @@
+.card {
+  padding: 2%;
+  margin: 1%;
+  border-radius: 10px;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  width: 25%;
+  height: 240px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  color: #e90404;
+  font-size: 1.6rem;
+  line-height: 1.8rem;
+}
+
+.card__title {
+  font-weight: 500;
+  font-size: 2rem;
+  line-height: 2.2rem;
+  margin-bottom: 2rem;
+  text-decoration: underline;
+}
+
+.card__description {
+  text-align: center;
+  line-height: 2rem;
+  margin-bottom: 1rem;
+}
+
+.card__price {
+  margin-bottom: 1rem;
+  text-align: center;
+  align-self: center;
+}
+
+.card__rating {
+  margin-bottom: 1rem;
+  text-align: center;
+  align-self: center;
+}
