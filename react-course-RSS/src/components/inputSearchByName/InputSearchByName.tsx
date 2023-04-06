@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 
-import fakeData from '../../data/fakeData';
 import searchIcon from '../../assets/img/search_icon.png';
 import './inputSearchByName.css';
 
