@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useCallback } from 'react';
 
 import InputSearchByName from '../../components/inputSearchByName/InputSearchByName';
@@ -10,21 +9,10 @@ export default function MainPage() {
   const initialSearch = localStorage.getItem('searchParameters') || '';
 
   const [searchParameters, setSearchParameters] = useState<string>(initialSearch);
-  const [cardsList, setCardsList] = useState<string[]>([]);
 
-  const getCardsList = useCallback(
-    (cards: any) => {
-      setCardsList([...cards]);
-    },
-    [cardsList]
-  );
-
-  const changeSearchParameters = useCallback(
-    (params: string) => {
-      setSearchParameters(params);
-    },
-    [searchParameters]
-  );
+  const changeSearchParameters = useCallback((params: string) => {
+    setSearchParameters(params);
+  }, []);
 
   return (
     <main className="main-page" data-testid="main-page">

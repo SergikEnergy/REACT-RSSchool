@@ -1,7 +1,10 @@
-.sort__field {
+.sort__field_wrapper {
   padding: 10px;
-  position: relative;
   width: 40%;
+}
+.sort__field_form {
+  width: 100%;
+  position: relative;
 }
 .sort__field_input {
   display: inline-block;
@@ -30,18 +33,46 @@
 
 .sort__field_icon {
   position: absolute;
-  position: absolute;
-  display: flex;
-  align-items: center;
-  top: 0;
-  bottom: 0;
-  left: 1.8rem;
+  left: 1rem;
   top: 50%;
   transform: translateY(-50%);
+}
+
+.sort__field_form {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .sort__field_icon-img {
   display: inline-block;
   width: 20px;
   height: 20px;
+}
+
+.sort__field_submit {
+  display: inline-block;
+  width: 30%;
+  padding: 10px;
+  color: white;
+  background-color: rgba(56, 255, 82, 0.6);
+  border-radius: 7px;
+  border: none;
+  font-size: 1.7rem;
+  line-height: 1.8rem;
+  transition: ease all 0.4s;
+  cursor: pointer;
+}
+
+.sort__field_submit:target:not(:disabled),
+.sort__field_submit:focus:not(:disabled),
+.sort__field_submit:hover:not(:disabled) {
+  transform: scale(1.03);
+  background-color: rgba(56, 255, 82, 0.8);
+}
+
+.sort__field_submit:disabled {
+  background-color: gray;
+  color: #000;
+  cursor: none;
 }
