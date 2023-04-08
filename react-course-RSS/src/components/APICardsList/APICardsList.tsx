@@ -1,5 +1,6 @@
 import './apiCardsList.css';
-import NotFoundAPI from '../notFoundAPI/notFoundAPI';
+
+import NotData from '../NotData/NotData';
 
 interface APICardsListProps {
   searchValue: string;
@@ -15,7 +16,7 @@ export default function APICardsList(props: APICardsListProps) {
         Hello from API
         {/* {data && data.length > 0 ? data.map((item) => (item && item.id ? <Card key={item.id} products={item} /> : '')) : ''} */}
       </div>
-      <NotFoundAPI />
+      <NotData />
     </div>
   );
 }
