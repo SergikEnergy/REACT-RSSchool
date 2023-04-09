@@ -36,7 +36,6 @@ export default function ModalWindow(props: ModalWindowProps) {
         }}
       >
         <div className="modal__header">
-          <h4 className="modal__title">Title</h4>
           <div role="presentation" className="modal__close" onClick={closeWindow}>
             <img src={closeImg} alt="close" />
           </div>

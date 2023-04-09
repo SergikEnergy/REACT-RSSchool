@@ -1,5 +1,5 @@
 import imgNotFoundAPI from '../../assets/img/notFoundAPI_img.jpeg';
-import './notFoundAPI.css';
+import './notData.css';
 
 export default function NotFoundAPI() {
   return (

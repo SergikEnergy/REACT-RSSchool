@@ -4,3 +4,11 @@
   justify-content: center;
   gap: 10px;
 }
+
+.cards-api_wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+}

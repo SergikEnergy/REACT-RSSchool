@@ -52,8 +52,9 @@
 
 .sort__field_submit {
   display: inline-block;
-  width: 30%;
+  width: 27%;
   padding: 10px;
+  margin-left: 20px;
   color: white;
   background-color: rgba(56, 255, 82, 0.6);
   border-radius: 7px;

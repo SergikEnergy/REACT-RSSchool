@@ -113,3 +113,43 @@ export interface SwitcherState {
 export interface UsersCardListProps {
   cards: IUserCard[];
 }
+
+export interface ISingleDataFromAPI {
+  id: number;
+  name: string;
+  status: string;
+  species: string;
+  type: string;
+  gender: string;
+  origin: {
+    name: string;
+    url: string;
+  };
+  location: {
+    name: string;
+    url: string;
+  };
+  image: string;
+  episode: [string];
+  url: string;
+  created: string;
+  error: string;
+  errorMessage?: string;
+}
+
+export interface IDataFromAPI {
+  info: {
+    count: number;
+    pages: number;
+    next: string;
+    prev: null | number;
+  };
+  results: ISingleDataFromAPI[];
+  error?: string;
+}
+
+export interface IDataError {
+  error: string;
+  errorMessage?: string;
+  results?: ISingleDataFromAPI[];
+}
