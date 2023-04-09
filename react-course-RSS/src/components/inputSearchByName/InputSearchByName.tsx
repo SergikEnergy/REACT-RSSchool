@@ -28,7 +28,7 @@ export default function InputSearchByName(props: InputSearchByNameProps) {
 
   return (
     <div className="sort__field_wrapper">
-      <form className="sort__field_form" onSubmit={submitHandler}>
+      <form className="sort__field_form" onSubmit={submitHandler} data-testid="formNameTest">
         <label htmlFor="sortByName">
           <input
             type="text"
@@ -44,7 +44,7 @@ export default function InputSearchByName(props: InputSearchByNameProps) {
         <div className="sort__field_icon">
           <img src={searchIcon} alt="search items icon" className="sort__field_icon-img" />
         </div>
-        <button type="submit" disabled={isLoading} className="sort__field_submit">
+        <button type="submit" disabled={isLoading} className="sort__field_submit" data-testid="submitButton">
           Search
         </button>
       </form>

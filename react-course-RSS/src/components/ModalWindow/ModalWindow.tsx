@@ -27,7 +27,7 @@ export default function ModalWindow(props: ModalWindowProps) {
   });
 
   return createPortal(
-    <div className={`modal__overlay ${isOpen ? 'active' : ''}`} role="presentation" onClick={closeWindow}>
+    <div data-testid="testModalWindow" className={`modal__overlay ${isOpen ? 'active' : ''}`} role="presentation" onClick={closeWindow}>
       <div
         role="presentation"
         className={`modal__content ${isOpen ? 'active' : ''}`}
@@ -36,7 +36,7 @@ export default function ModalWindow(props: ModalWindowProps) {
         }}
       >
         <div className="modal__header">
-          <div role="presentation" className="modal__close" onClick={closeWindow}>
+          <div data-testid="testCloseEvent" role="presentation" className="modal__close" onClick={closeWindow}>
             <img src={closeImg} alt="close" />
           </div>
         </div>

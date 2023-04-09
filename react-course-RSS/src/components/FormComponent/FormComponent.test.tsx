@@ -35,7 +35,7 @@ describe('test Form Component', () => {
     render(<FormComponent getUserCard={foo} />);
 
     fireEvent.change(screen.getByTestId('firstNameTest'), {
-      target: { value: 'userName' },
+      target: { value: 'userTestName' },
     });
     fireEvent.change(screen.getByTestId('lastNameTest'), {
       target: { value: 'testUserLastName' },
@@ -55,7 +55,8 @@ describe('test Form Component', () => {
   });
 
   waitFor(() => {
-    const userName = screen.getByText('userName');
+    const userName = screen.getByTestId('firstNameTest');
+    expect(userName).toHaveValue('userTestName');
     expect(userName).toBeInTheDocument();
     expect(foo).toHaveBeenCalledTimes(1);
   });

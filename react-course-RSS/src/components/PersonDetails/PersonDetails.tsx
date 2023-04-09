@@ -22,7 +22,9 @@ export default function PersonDetails(props: PersonDetailsProps) {
         <img src={character?.image} alt={`avatar_${id}`} className="person_avatar" />
       </div>
       <div className="person__info">
-        <div className="person__name">Name: {character?.name}</div>
+        <div className="person__name" data-testid="testNameSingle">
+          Name: {character?.name}
+        </div>
         <div className="person__gender">Gender: {character?.gender}</div>
         <div className="person__species">Species: {character?.species}</div>
         <div className="person__created">Created at: {character?.created}</div>
