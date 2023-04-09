@@ -1,11 +1,11 @@
-import { describe, test } from 'vitest';
+import { describe, test, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
 
 import InputSearchByName from './InputSearchByName';
 
 describe('test input panel', () => {
   test('renderInputElement', () => {
-    render(<InputSearchByName />);
+    render(<InputSearchByName searchParams="f" onChangeSearch={vi.fn()} />);
 
     expect(screen.getByTestId('searchName')).toBeInTheDocument();
   });
@@ -14,7 +14,7 @@ describe('test input panel', () => {
     const inputValue = localStorage.getItem('searchParameters');
     let input: HTMLInputElement;
     beforeEach(() => {
-      render(<InputSearchByName />);
+      render(<InputSearchByName searchParams="f" onChangeSearch={vi.fn()} />);
       input = screen.getByPlaceholderText(/name of/i);
     });
 
