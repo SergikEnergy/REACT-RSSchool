@@ -55,7 +55,7 @@ describe('test Form Component', () => {
   });
 
   waitFor(() => {
-    const userName = screen.getByTestId('firstNameTest');
+    const userName = screen.findByTestId('firstNameTest');
     expect(userName).toHaveValue('userTestName');
     expect(userName).toBeInTheDocument();
     expect(foo).toHaveBeenCalledTimes(1);
