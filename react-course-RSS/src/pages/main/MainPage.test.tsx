@@ -1,18 +1,28 @@
 import { render, screen } from '@testing-library/react';
 import { describe, test } from 'vitest';
 
+import { Provider } from 'react-redux';
+import store from '../../store';
 import MainPage from './MainPage';
 
 describe('render mainPage', () => {
   test('renders section main page', () => {
-    render(<MainPage />);
+    render(
+      <Provider store={store}>
+        <MainPage />
+      </Provider>
+    );
     const idTestPage = 'main-page';
     const mainPage = screen.getByTestId(idTestPage);
     expect(mainPage).toBeInTheDocument();
   });
 
   test('have content text heading', () => {
-    render(<MainPage />);
+    render(
+      <Provider store={store}>
+        <MainPage />
+      </Provider>
+    );
     expect(
       screen.getByRole('heading', {
         level: 1,

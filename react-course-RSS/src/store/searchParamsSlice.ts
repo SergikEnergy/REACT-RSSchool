@@ -4,7 +4,7 @@ interface SearchParamsState {
   searchValue: string;
 }
 
-const initialState = {
+export const initialState = {
   searchValue: '',
 } as SearchParamsState;
 

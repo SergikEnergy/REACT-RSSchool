@@ -1,14 +1,18 @@
 import { BrowserRouter } from 'react-router-dom';
 import { render, screen } from '@testing-library/react';
 import { describe, test } from 'vitest';
+import { Provider } from 'react-redux';
+import store from '../../store';
 import FormPage from './FormPage';
 
 describe('render Form Page test', () => {
   test('should render form page', () => {
     render(
-      <BrowserRouter>
-        <FormPage />
-      </BrowserRouter>
+      <Provider store={store}>
+        <BrowserRouter>
+          <FormPage />
+        </BrowserRouter>
+      </Provider>
     );
     const mainFormId = 'form-page';
     const formPage = screen.getByTestId(mainFormId);
@@ -17,9 +21,11 @@ describe('render Form Page test', () => {
 
   test('should have heading', () => {
     render(
-      <BrowserRouter>
-        <FormPage />
-      </BrowserRouter>
+      <Provider store={store}>
+        <BrowserRouter>
+          <FormPage />
+        </BrowserRouter>
+      </Provider>
     );
     expect(
       screen.getByRole('heading', {

@@ -5,7 +5,7 @@ interface UsersState {
   users: IUserCard[];
 }
 
-const initialState = {
+export const initialState = {
   users: [],
 } as UsersState;
 

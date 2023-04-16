@@ -7,7 +7,7 @@ interface CharactersState {
   error: string;
 }
 
-const initialState = {
+export const initialState = {
   character: [],
   id: 0,
   error: '',
