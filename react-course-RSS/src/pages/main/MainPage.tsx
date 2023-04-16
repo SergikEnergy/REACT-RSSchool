@@ -4,8 +4,6 @@ import APICardsList from '../../components/APICardsList/APICardsList';
 import './mainPage.css';
 
 export default function MainPage() {
-  // const initialSearch = localStorage.getItem('searchParameters') || '';
-
   return (
     <main className="main-page" data-testid="main-page">
       <div className="main-page__wrapper">
