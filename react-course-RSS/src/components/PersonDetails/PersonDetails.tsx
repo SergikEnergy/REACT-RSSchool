@@ -1,16 +1,12 @@
-import { useFetchSingleData } from '../../hooks/useFetchData';
+import { useAppSelector } from '../../hooks';
+import { useGetCharacterByIdQuery } from '../../services/APIServiceRTQ';
 import Preloader from '../PreLoader/Preloader';
 import NotData from '../NotData/NotData';
 import './personDetails.css';
 
-interface PersonDetailsProps {
-  id: number;
-}
-
-export default function PersonDetails(props: PersonDetailsProps) {
-  const { id } = props;
-
-  const { character, error, isLoading } = useFetchSingleData(`${id}`);
+export default function PersonDetails() {
+  const id = useAppSelector((state) => state.characters.id);
+  const { data: character, error, isFetching: isLoading } = useGetCharacterByIdQuery(id);
 
   if (isLoading) return <Preloader />;
 
@@ -19,15 +15,15 @@ export default function PersonDetails(props: PersonDetailsProps) {
   return (
     <div className="person">
       <div className="person__img">
-        <img src={character?.image} alt={`avatar_${id}`} className="person_avatar" />
+        <img src={character ? character.image : ''} alt={`avatar_${id}`} className="person_avatar" />
       </div>
       <div className="person__info">
         <div className="person__name" data-testid="testNameSingle">
-          Name: {character?.name}
+          Name: {character ? character.name : ''}
         </div>
-        <div className="person__gender">Gender: {character?.gender}</div>
-        <div className="person__species">Species: {character?.species}</div>
-        <div className="person__created">Created at: {character?.created}</div>
+        <div className="person__gender">Gender: {character ? character.gender : ''}</div>
+        <div className="person__species">Species: {character ? character.species : ''}</div>
+        <div className="person__created">Created at: {character ? character.created : ''}</div>
       </div>
     </div>
   );

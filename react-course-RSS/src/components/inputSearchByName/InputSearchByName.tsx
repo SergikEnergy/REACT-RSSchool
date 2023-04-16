@@ -1,28 +1,26 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
+import { useAppDispatch, useAppSelector } from '../../hooks';
+import { setSearchParams } from '../../store/searchParamsSlice';
 
 import searchIcon from '../../assets/img/search_icon.png';
 import './inputSearchByName.css';
 
-interface InputSearchByNameProps {
-  searchParams: string;
-  onChangeSearch: (value: string) => void;
-}
+export default function InputSearchByName() {
+  const currentInputValue = useAppSelector((state) => state.searchParams.searchValue);
+  const dispatch = useAppDispatch();
 
-export default function InputSearchByName(props: InputSearchByNameProps) {
-  const { searchParams, onChangeSearch } = props;
-
+  const inputNameRef = useRef<HTMLInputElement | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [currentInputValue, setCurrentInputValue] = useState<string>(searchParams);
 
-  function changeHandler(event: React.ChangeEvent<HTMLInputElement>) {
-    setCurrentInputValue(event.target.value);
+  function changeHandler() {
     setIsLoading(false);
   }
 
   function submitHandler(event: React.ChangeEvent<HTMLFormElement>) {
     event.preventDefault();
-    onChangeSearch(currentInputValue);
-    localStorage.setItem('searchParameters', currentInputValue);
+    if (inputNameRef.current) {
+      dispatch(setSearchParams(inputNameRef.current.value.trim()));
+    }
     setIsLoading(true);
   }
 
@@ -37,7 +35,8 @@ export default function InputSearchByName(props: InputSearchByNameProps) {
             className="sort__field_input"
             id="sortByName"
             placeholder="Input name of item"
-            value={currentInputValue}
+            defaultValue={currentInputValue}
+            ref={inputNameRef}
             onChange={changeHandler}
           />
         </label>
