@@ -5,7 +5,7 @@ import PersonDetails from './PersonDetails';
 
 describe('test person details to render', () => {
   test('should return correct answer', async () => {
-    render(<PersonDetails id={1} />);
+    render(<PersonDetails />);
 
     await waitFor(() => {
       const nameBlock = screen.getByTestId('testNameSingle') as HTMLDivElement;
@@ -15,7 +15,7 @@ describe('test person details to render', () => {
   });
 
   test('should return incorrect answer', async () => {
-    render(<PersonDetails id={14789} />);
+    render(<PersonDetails />);
 
     await waitFor(() => {
       const notFoundBlock = screen.getByTestId('emptyApi') as HTMLDivElement;

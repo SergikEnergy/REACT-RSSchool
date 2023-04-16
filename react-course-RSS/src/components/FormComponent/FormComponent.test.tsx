@@ -8,13 +8,13 @@ global.URL.createObjectURL = vi.fn();
 describe('test Form Component', () => {
   const foo = vi.fn();
   test('should render form page', () => {
-    render(<FormComponent getUserCard={foo} />);
+    render(<FormComponent />);
     const formId = 'formTag';
     const formPage = screen.getByTestId(formId);
     expect(formPage).toBeInTheDocument();
   });
   test('should render all Inputs', async () => {
-    render(<FormComponent getUserCard={foo} />);
+    render(<FormComponent />);
     expect(await screen.findByTestId('firstNameTest')).toBeInTheDocument();
     expect(await screen.findByTestId('lastNameTest')).toBeInTheDocument();
     expect(await screen.findByTestId('birthDayTest')).toBeInTheDocument();
@@ -23,7 +23,7 @@ describe('test Form Component', () => {
     expect(await screen.findByTestId('switcherTest')).toBeInTheDocument();
   });
   test('should display required error when value is invalid', async () => {
-    render(<FormComponent getUserCard={foo} />);
+    render(<FormComponent />);
     fireEvent.submit(screen.getByRole('button'));
     expect(await screen.findByTestId('switcherError')).toBeInTheDocument();
   });
@@ -32,7 +32,7 @@ describe('test Form Component', () => {
       type: 'image/jpg',
     });
 
-    render(<FormComponent getUserCard={foo} />);
+    render(<FormComponent />);
 
     fireEvent.change(screen.getByTestId('firstNameTest'), {
       target: { value: 'userTestName' },

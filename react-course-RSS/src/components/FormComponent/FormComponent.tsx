@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 
-import { FormFields, FormComponentProps, IUserCard } from '../../types';
+import { useAppDispatch } from '../../hooks';
+import { addNewUser } from '../../store/usersSlice';
+
+import { FormFields, IUserCard } from '../../types';
 import InputText from '../UI/InputText/InputText';
 import OptionElement from '../UI/OptionElement/OptionElement';
 import InputRadio from '../UI/InputRadio/InputRadio';
@@ -10,8 +13,9 @@ import SubmitButton from '../UI/Button/SubmitButton';
 
 import './formComponent.css';
 
-export default function FormComponent(props: FormComponentProps) {
+export default function FormComponent() {
   const [loadMessage, setLoadMessage] = useState('');
+  const dispatch = useAppDispatch();
 
   const {
     register,
@@ -45,8 +49,7 @@ export default function FormComponent(props: FormComponentProps) {
       image: urlToImage,
     };
 
-    const { getUserCard } = props;
-    getUserCard(dataForTransfer);
+    dispatch(addNewUser(dataForTransfer));
     reset();
   };
 

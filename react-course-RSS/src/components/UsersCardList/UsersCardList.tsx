@@ -1,11 +1,12 @@
 import React from 'react';
+import { useAppSelector } from '../../hooks';
 
-import { UsersCardListProps } from '../../types';
 import User from '../User/User';
 import './usersCardList.css';
 
-export default function UsersCardList(props: UsersCardListProps) {
-  const { cards } = props;
+export default function UsersCardList() {
+  const cards = useAppSelector((state) => state.usersBase.users);
+
   return (
     <div className="users-wrapper" data-testid="TestUserListWrapper">
       {cards.map((user) => {

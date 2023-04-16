@@ -2,12 +2,14 @@ import { configureStore } from '@reduxjs/toolkit';
 import { setupListeners } from '@reduxjs/toolkit/query';
 import searchReducer from './searchParamsSlice';
 import characterReducer from './characterSlice';
+import userReducer from './usersSlice';
 import { rickAndMortyApi } from '../services/APIServiceRTQ';
 
 const store = configureStore({
   reducer: {
     searchParams: searchReducer,
     characters: characterReducer,
+    usersBase: userReducer,
     [rickAndMortyApi.reducerPath]: rickAndMortyApi.reducer,
   },
 

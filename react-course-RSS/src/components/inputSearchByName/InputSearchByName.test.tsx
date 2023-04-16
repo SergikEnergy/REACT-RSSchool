@@ -5,7 +5,7 @@ import InputSearchByName from './InputSearchByName';
 
 describe('test input panel', () => {
   test('renderInputElement', () => {
-    render(<InputSearchByName searchParams="f" onChangeSearch={vi.fn()} />);
+    render(<InputSearchByName />);
 
     expect(screen.getByTestId('searchName')).toBeInTheDocument();
   });
@@ -16,8 +16,7 @@ describe('test input panel', () => {
     const inputValue = localStorage.getItem('searchParameters') || '';
     let input: HTMLInputElement;
     beforeEach(() => {
-      const cb = vi.fn();
-      render(<InputSearchByName searchParams={testInputValue} onChangeSearch={cb} />);
+      render(<InputSearchByName />);
       input = screen.getByTestId('searchName');
     });
 
