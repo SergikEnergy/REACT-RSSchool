@@ -8,7 +8,7 @@ export default function UsersCardList() {
   const cards = useAppSelector((state) => state.usersBase.users);
 
   return (
-    <div className="users-wrapper" data-testid="TestUserListWrapper">
+    <div className="users-wrapper" data-testid="testUserList">
       {cards.map((user) => {
         return <User key={user.id} data={{ ...user }} />;
       })}

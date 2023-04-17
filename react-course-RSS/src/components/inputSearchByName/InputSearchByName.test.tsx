@@ -1,29 +1,32 @@
 import { describe, test, vi } from 'vitest';
 import { render, screen, waitFor, fireEvent } from '@testing-library/react';
 
+import * as reduxTools from 'react-redux';
+import store from '../../store';
+
 import InputSearchByName from './InputSearchByName';
 
 describe('test input panel', () => {
   test('renderInputElement', () => {
-    render(<InputSearchByName />);
+    render(
+      <reduxTools.Provider store={store}>
+        <InputSearchByName />
+      </reduxTools.Provider>
+    );
 
     expect(screen.getByTestId('searchName')).toBeInTheDocument();
   });
   const testInputValue = 'test';
 
   describe('Testing Base property', () => {
-    localStorage.setItem('searchParameters', testInputValue);
-    const inputValue = localStorage.getItem('searchParameters') || '';
     let input: HTMLInputElement;
     beforeEach(() => {
-      render(<InputSearchByName />);
+      render(
+        <reduxTools.Provider store={store}>
+          <InputSearchByName />
+        </reduxTools.Provider>
+      );
       input = screen.getByTestId('searchName');
-    });
-
-    test('test the value from localStorage', () => {
-      expect(input.type).toBe('text');
-
-      expect(input.value === inputValue).toBe(true);
     });
 
     test('change inputValue on searchPanel', () => {
@@ -44,15 +47,17 @@ describe('test input panel', () => {
       expect(button).toBeInTheDocument();
       expect(button).toHaveAttribute('type', 'submit');
     });
-    test('test submit function on submit with save to localStorage', () => {
-      const formName = screen.getByTestId('formNameTest');
+
+    test('test submit function on submit with saving value', async () => {
+      const formName = await screen.findByTestId('formNameTest');
       fireEvent.change(input, {
         target: {
           value: testInputValue,
         },
       });
       fireEvent.submit(formName);
-      expect(window.localStorage.getItem('searchParameters')).toBe(testInputValue);
+
+      expect(input.value).toBe(testInputValue);
     });
   });
 });

@@ -1,20 +1,38 @@
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 
 import { describe, test, vi } from 'vitest';
+import * as reduxHooks from 'react-redux';
+import * as actions from '../../store/usersSlice';
+import store from '../../store';
 import FormComponent from './FormComponent';
 
 global.URL.createObjectURL = vi.fn();
+vi.mock('react-redux');
+
+const mockedDispatch = vi.spyOn(reduxHooks, 'useDispatch');
 
 describe('test Form Component', () => {
   const foo = vi.fn();
+  mockedDispatch.mockReturnValue(foo);
+
+  const mockedAddNewUser = vi.spyOn(actions, 'addNewUser');
+
   test('should render form page', () => {
-    render(<FormComponent />);
+    render(
+      <reduxHooks.Provider store={store}>
+        <FormComponent />
+      </reduxHooks.Provider>
+    );
     const formId = 'formTag';
     const formPage = screen.getByTestId(formId);
     expect(formPage).toBeInTheDocument();
   });
   test('should render all Inputs', async () => {
-    render(<FormComponent />);
+    render(
+      <reduxHooks.Provider store={store}>
+        <FormComponent />
+      </reduxHooks.Provider>
+    );
     expect(await screen.findByTestId('firstNameTest')).toBeInTheDocument();
     expect(await screen.findByTestId('lastNameTest')).toBeInTheDocument();
     expect(await screen.findByTestId('birthDayTest')).toBeInTheDocument();
@@ -23,7 +41,11 @@ describe('test Form Component', () => {
     expect(await screen.findByTestId('switcherTest')).toBeInTheDocument();
   });
   test('should display required error when value is invalid', async () => {
-    render(<FormComponent />);
+    render(
+      <reduxHooks.Provider store={store}>
+        <FormComponent />
+      </reduxHooks.Provider>
+    );
     fireEvent.submit(screen.getByRole('button'));
     expect(await screen.findByTestId('switcherError')).toBeInTheDocument();
   });
@@ -32,7 +54,11 @@ describe('test Form Component', () => {
       type: 'image/jpg',
     });
 
-    render(<FormComponent />);
+    render(
+      <reduxHooks.Provider store={store}>
+        <FormComponent />
+      </reduxHooks.Provider>
+    );
 
     fireEvent.change(screen.getByTestId('firstNameTest'), {
       target: { value: 'userTestName' },
