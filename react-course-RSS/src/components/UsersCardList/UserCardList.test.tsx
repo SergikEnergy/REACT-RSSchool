@@ -19,11 +19,10 @@ describe('user list test', () => {
         <UsersCardList />
       </reduxHooks.Provider>
     );
-    screen.debug();
     expect(listsCard).toBeTruthy();
   });
 
-  test('render div wrapper', async () => {
+  test('render div wrapper', () => {
     render(
       <reduxHooks.Provider store={store}>
         <UsersCardList />
@@ -32,7 +31,7 @@ describe('user list test', () => {
     const divWrapper = screen.queryByTestId(wrapperTestId) as HTMLDivElement;
     screen.debug();
     expect(divWrapper).toBeNull();
-    expect(await screen.findByTestId(wrapperTestId)).toBeInTheDocument();
+    expect(screen.getByTestId(wrapperTestId)).toBeInTheDocument();
   });
 
   test('render all users', async () => {
