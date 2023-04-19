@@ -1,0 +1,22 @@
+.api_not-found {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.api_not-found__title {
+  color: red;
+  font-size: 2rem;
+  line-height: 2.2rem;
+  text-align: center;
+  margin: 1rem 0;
+}
+
+.api_not-found__picture {
+  border-radius: 15px;
+  display: inline-block;
+  width: 250px;
+  height: 500px;
+}
