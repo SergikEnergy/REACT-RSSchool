@@ -2,6 +2,7 @@ module.exports = {
   env: {
     browser: true,
     es2021: true,
+    node: true,
   },
   extends: [
     'airbnb',
@@ -25,6 +26,7 @@ module.exports = {
   rules: {
     'react/jsx-props-no-spreading': 'off',
     'no-console': 'warn',
+    'no-underscore-dangle': ['error', { allow: ['_dirname'] }],
     'prefer-const': 'error',
     'react/jsx-uses-react': 'off',
     'react/react-in-jsx-scope': 'off',
@@ -37,10 +39,11 @@ module.exports = {
     '@typescript-eslint/comma-dangle': ['error', 'only-multiline'],
     '@typescript-eslint/no-explicit-any': 'error',
     '@typescript-eslint/ban-ts-comment': 'error',
+    '@typescript-eslint/no-var-requires': 'off',
     'import/no-extraneous-dependencies': [
       'error',
       {
-        devDependencies: ['**/*.test.ts', '**/*.test.tsx', 'vite.config.ts', 'src/mocks/*'],
+        devDependencies: ['**/*.test.ts', '**/*.test.tsx', 'vite.config.ts', 'src/mocks/*', 'server.ts'],
       },
     ],
   },

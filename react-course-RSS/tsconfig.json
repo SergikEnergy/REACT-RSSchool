@@ -15,9 +15,15 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
+    "types": ["vite/client", "vite-plugin-svgr/client", "vitest/globals"],
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"]
+    },
+    "outDir": "./dist"
   },
-  "include": ["vite.config.ts", "vitest.config.ts", ".eslintrc.cjs", "src"],
+  "include": ["vite.config.ts", "vitest.config.ts", ".eslintrc.cjs", "src", "server.ts"],
   "exclude": ["node_modules"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

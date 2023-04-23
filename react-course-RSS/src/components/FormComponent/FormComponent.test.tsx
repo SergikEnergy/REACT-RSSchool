@@ -2,7 +2,7 @@ import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 
 import { describe, test, vi } from 'vitest';
 import * as reduxHooks from 'react-redux';
-import * as actions from '../../store/usersSlice';
+// import * as actions from '../../store/usersSlice';
 import store from '../../store';
 import FormComponent from './FormComponent';
 
@@ -15,7 +15,7 @@ describe('test Form Component', () => {
   const foo = vi.fn();
   mockedDispatch.mockReturnValue(foo);
 
-  const mockedAddNewUser = vi.spyOn(actions, 'addNewUser');
+  // const mockedAddNewUser = vi.spyOn(actions, 'addNewUser');
 
   test('should render form page', () => {
     render(
