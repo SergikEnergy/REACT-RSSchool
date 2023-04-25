@@ -8,12 +8,16 @@ import App from './App';
 
 const store = setupStore();
 
-const render = async (url: string | Partial<Location>, options: RenderToPipeableStreamOptions) => {
+export default async function render(url: string | Partial<Location>, options: RenderToPipeableStreamOptions) {
   await store.dispatch(rickAndMortyApi.endpoints.getAllCharacter.initiate());
   const preloadedState = store.getState();
 
   const injectPreload = () => {
-    return `<script>window.__PRELOADED_STATE__ = ${JSON.stringify(preloadedState).replace(/</g, '\\u003c')}</script>`;
+    return `
+    <script>
+    window.__PRELOADED_STATE__ = ${JSON.stringify(preloadedState).replace(/</g, '\\u003c')}
+  </script>
+    `;
   };
 
   const stream = renderToPipeableStream(
@@ -26,6 +30,4 @@ const render = async (url: string | Partial<Location>, options: RenderToPipeable
   );
 
   return { stream, injectPreload };
-};
-
-export default render;
+}
