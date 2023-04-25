@@ -2,8 +2,6 @@ import React from 'react';
 
 import { FieldErrors, FieldValues, UseFormRegisterReturn } from 'react-hook-form';
 
-import './inputText.css';
-
 interface IInputTextProps {
   errors: FieldErrors<FieldValues>;
   type: string;

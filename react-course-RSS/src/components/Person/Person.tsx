@@ -1,5 +1,4 @@
 import { ISingleDataFromAPI } from '../../types';
-import './person.css';
 
 interface PersonProps {
   data: ISingleDataFromAPI;

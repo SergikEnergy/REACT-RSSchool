@@ -3,8 +3,6 @@ import { useAppDispatch, useAppSelector } from '../../hooks';
 import { useGetCharacterByNameQuery } from '../../services/APIServiceRTQ';
 import { getCharacterId } from '../../store/characterSlice';
 
-import './apiCardsList.css';
-
 import NotData from '../NotData/NotData';
 import Preloader from '../PreLoader/Preloader';
 import Person from '../Person/Person';

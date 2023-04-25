@@ -11,8 +11,6 @@ import InputRadio from '../UI/InputRadio/InputRadio';
 import Switcher from '../UI/Switcher/Switcher';
 import SubmitButton from '../UI/Button/SubmitButton';
 
-import './formComponent.css';
-
 export default function FormComponent() {
   const [loadMessage, setLoadMessage] = useState('');
   const dispatch = useAppDispatch();

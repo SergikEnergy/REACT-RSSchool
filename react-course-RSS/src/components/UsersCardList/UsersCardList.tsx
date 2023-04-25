@@ -2,7 +2,6 @@ import React from 'react';
 import { useAppSelector } from '../../hooks';
 
 import User from '../User/User';
-import './usersCardList.css';
 
 export default function UsersCardList() {
   const cards = useAppSelector((state) => state.usersBase.users);

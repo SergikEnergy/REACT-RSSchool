@@ -1,7 +1,6 @@
 import { ReactNode, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 
-import './modalWindow.css';
 import closeImg from '../../assets/img/close_icon.jpg';
 
 interface ModalWindowProps {
@@ -43,6 +42,6 @@ export default function ModalWindow(props: ModalWindowProps) {
         <div className="modal__body">{children}</div>
       </div>
     </div>,
-    document.body
+    document.querySelector('.body') as HTMLElement
   );
 }

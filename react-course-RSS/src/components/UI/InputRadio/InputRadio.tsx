@@ -1,8 +1,6 @@
 import React from 'react';
 import { FieldErrors, FieldValues, UseFormRegisterReturn } from 'react-hook-form';
 
-import './inputRadio.css';
-
 interface InputRadioProps {
   title: string;
   rest: UseFormRegisterReturn;

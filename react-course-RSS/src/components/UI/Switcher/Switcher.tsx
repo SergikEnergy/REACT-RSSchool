@@ -1,8 +1,6 @@
 import React from 'react';
 import { FieldErrors, FieldValues, UseFormRegisterReturn } from 'react-hook-form';
 
-import './switcher.css';
-
 interface SwitcherProps {
   errors: FieldErrors<FieldValues>;
   rest: UseFormRegisterReturn;

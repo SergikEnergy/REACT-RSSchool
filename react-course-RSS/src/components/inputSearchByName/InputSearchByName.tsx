@@ -3,7 +3,6 @@ import { useAppDispatch, useAppSelector } from '../../hooks';
 import { setSearchParams } from '../../store/searchParamsSlice';
 
 import searchIcon from '../../assets/img/search_icon.png';
-import './inputSearchByName.css';
 
 export default function InputSearchByName() {
   const currentInputValue = useAppSelector((state) => state.searchParams.searchValue);

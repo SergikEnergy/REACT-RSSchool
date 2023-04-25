@@ -1,6 +1,5 @@
 import React from 'react';
 
-import './footer.css';
 import gitLogoImg from '../../assets/img/GHlogo.png';
 import rsLogoImg from '../../assets/img/rsLogo.png';
 

@@ -1,8 +1,6 @@
 import FormComponent from '../../components/FormComponent/FormComponent';
 import UsersCardList from '../../components/UsersCardList/UsersCardList';
 
-import './formPage.css';
-
 export default function FormPage() {
   return (
     <main className="form-page" data-testid="form-page">

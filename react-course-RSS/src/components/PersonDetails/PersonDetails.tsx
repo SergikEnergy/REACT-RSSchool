@@ -2,7 +2,6 @@ import { useAppSelector } from '../../hooks';
 import { useGetCharacterByIdQuery } from '../../services/APIServiceRTQ';
 import Preloader from '../PreLoader/Preloader';
 import NotData from '../NotData/NotData';
-import './personDetails.css';
 
 export default function PersonDetails() {
   const id = useAppSelector((state) => state.characters.id);

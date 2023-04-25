@@ -1,7 +1,5 @@
 import React from 'react';
 
-import './aboutPage.css';
-
 export default function AboutPage() {
   return (
     <main className="about_page" data-testid="about-page">

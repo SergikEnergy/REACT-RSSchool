@@ -1,7 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-import './notFound.css';
 import img404 from '../../assets/img/404.png';
 
 export default function NotFound() {
