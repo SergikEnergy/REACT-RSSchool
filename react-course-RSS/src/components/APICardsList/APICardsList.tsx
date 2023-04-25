@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import { useGetAllCharacterQuery, useGetCharacterByNameQuery } from '../../services/APIServiceRTQ';
-import { getAnotherCharacter, getCharacterId } from '../../store/characterSlice';
+import { useGetCharacterByNameQuery } from '../../services/APIServiceRTQ';
+import { getCharacterId } from '../../store/characterSlice';
 
 import './apiCardsList.css';
 
@@ -14,43 +14,20 @@ import PersonDetails from '../PersonDetails/PersonDetails';
 
 export default function APICardsList() {
   const searchValue = useAppSelector((state) => state.searchParams.searchValue);
-  const characters = useAppSelector((state) => state.characters.character);
+  const [name, setName] = useState('');
+  const dispatch = useAppDispatch();
 
   const { isOpen, toggle } = useModalWindow();
 
-  const [isErrorData, setIsErrorData] = useState<boolean>(false);
-  const [isLoadingData, setIsLoadingData] = useState<boolean>(false);
-  const dispatch = useAppDispatch();
-
-  const { data: dataInitial, error: errorInitial, isFetching: isFetchingInitial } = useGetAllCharacterQuery();
-
-  const { data: dataFilterByName, error: errorFilterByName, isFetching: isFetchingByName } = useGetCharacterByNameQuery(searchValue);
-
   useEffect(() => {
-    if (searchValue.trim() === '' && dataInitial) {
-      dispatch(getAnotherCharacter(dataInitial.results));
-    }
-  }, [dispatch, dataInitial, searchValue]);
+    setName(searchValue);
+  }, [searchValue]);
 
-  useEffect(() => {
-    if (searchValue.trim() !== '' && dataFilterByName && dataFilterByName.results) {
-      dispatch(getAnotherCharacter(dataFilterByName.results));
-    }
-  }, [dispatch, dataFilterByName, searchValue, errorFilterByName]);
+  const { data, isError, isFetching } = useGetCharacterByNameQuery(name);
 
-  useEffect(() => {
-    if (isFetchingInitial || isFetchingByName) setIsLoadingData(true);
-    else if (!isFetchingInitial || !isFetchingByName) setIsLoadingData(false);
-  }, [isFetchingInitial, isFetchingByName]);
+  if (isFetching) return <Preloader />;
 
-  useEffect(() => {
-    if (errorInitial || errorFilterByName) setIsErrorData(true);
-    else if (!errorInitial || !errorFilterByName) setIsErrorData(false);
-  }, [errorInitial, errorFilterByName]);
-
-  if (isLoadingData) return <Preloader />;
-
-  if (isErrorData || (dataInitial && dataInitial.error) || (dataFilterByName && dataFilterByName.error)) {
+  if (isError || (data && data.error)) {
     return <NotData />;
   }
 
@@ -61,8 +38,8 @@ export default function APICardsList() {
       </ModalWindow>
       <div className="cards-api">
         <div className="cards-api_wrapper">
-          {characters
-            ? characters.map((item) =>
+          {data && data.results
+            ? data.results.map((item) =>
                 item && item.id ? (
                   <Person
                     key={item.id}
