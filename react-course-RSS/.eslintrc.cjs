@@ -26,7 +26,7 @@ module.exports = {
   rules: {
     'react/jsx-props-no-spreading': 'off',
     'no-console': 'warn',
-    'no-underscore-dangle': ['error', { allow: ['_dirname'] }],
+    'no-underscore-dangle': 'off',
     'prefer-const': 'error',
     'react/jsx-uses-react': 'off',
     'react/react-in-jsx-scope': 'off',

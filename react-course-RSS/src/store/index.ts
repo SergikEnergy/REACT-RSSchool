@@ -1,26 +1,30 @@
-import { configureStore } from '@reduxjs/toolkit';
-import { setupListeners } from '@reduxjs/toolkit/query';
+import * as toolkitRaw from '@reduxjs/toolkit';
+
 import searchReducer from './searchParamsSlice';
 import characterReducer from './characterSlice';
 import userReducer from './usersSlice';
 import { rickAndMortyApi } from '../services/APIServiceRTQ';
 
-const store = configureStore({
-  reducer: {
-    searchParams: searchReducer,
-    characters: characterReducer,
-    usersBase: userReducer,
-    [rickAndMortyApi.reducerPath]: rickAndMortyApi.reducer,
-  },
+export type TypeToolkitRaw = typeof toolkitRaw & { default?: unknown };
 
-  middleware: (getDefaultMiddleware) => {
-    return getDefaultMiddleware().concat(rickAndMortyApi.middleware);
-  },
+const { combineReducers, configureStore } = ((toolkitRaw as TypeToolkitRaw).default ?? toolkitRaw) as typeof toolkitRaw;
+
+const rootReducer = combineReducers({
+  searchParams: searchReducer,
+  characters: characterReducer,
+  usersBase: userReducer,
+  [rickAndMortyApi.reducerPath]: rickAndMortyApi.reducer,
 });
 
-setupListeners(store.dispatch);
+export const setupStore = (preloadedState?: toolkitRaw.PreloadedState<ReturnType<typeof rootReducer>>) =>
+  configureStore({
+    reducer: rootReducer,
+    preloadedState,
+    middleware: (getDefaultMiddleware) => {
+      return getDefaultMiddleware().concat(rickAndMortyApi.middleware);
+    },
+  });
 
-export default store;
-
-export type RootState = ReturnType<typeof store.getState>;
-export type AppDispatch = typeof store.dispatch;
+export type RootState = ReturnType<typeof rootReducer>;
+export type AppStore = ReturnType<typeof setupStore>;
+export type AppDispatch = AppStore['dispatch'];

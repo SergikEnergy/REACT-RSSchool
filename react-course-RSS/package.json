@@ -8,11 +8,23 @@
     "start": "node server.ts",
     "build": "npm run build:client && npm run build:server",
     "build:client": "vite build --outDir dist/client",
-    "build:server": "vite build --outDir dist/server --ssr src/entry-server.tsx",
+    "build:server": "vite build --ssr src/entry-server.tsx --outDir dist/server ",
     "test": "vitest",
     "coverage": "vitest run --coverage",
     "lint": "npx eslint . --ext .js,.jsx,.ts,.tsx",
     "fix": "npx eslint --fix --ext .js,.jsx,.ts,.tsx"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 2 chrome version",
+      "last 2 firefox version",
+      "last 2 safari version"
+    ]
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.3",
