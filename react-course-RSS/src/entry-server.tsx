@@ -8,7 +8,7 @@ import App from './App';
 
 const store = setupStore();
 
-export default async function render(url: string | Partial<Location>, opts: RenderToPipeableStreamOptions) {
+export default async function render(url: string, opts: RenderToPipeableStreamOptions) {
   await store.dispatch(rickAndMortyApi.endpoints.getCharacterByName.initiate(''));
   const preloadedState = store.getState();
 

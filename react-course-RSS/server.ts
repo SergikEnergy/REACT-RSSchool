@@ -1,6 +1,6 @@
 import fs from 'fs';
 
-import express, { Express, Request, Response, NextFunction } from 'express';
+import express from 'express';
 import dotenv from 'dotenv';
 
 import { dirname, resolve } from 'path';
@@ -13,7 +13,7 @@ async function createServer() {
   const port = process.env.PORT || 5173;
   const base = process.env.BASE || '/';
 
-  const app: Express = express();
+  const app = express();
   const DirName = dirname(fileURLToPath(import.meta.url));
   const htmlRoot = resolve(DirName, 'index.html');
 
@@ -25,14 +25,14 @@ async function createServer() {
 
   app.use(vite.middlewares);
 
-  app.use('*', async (req: Request, res: Response, next: NextFunction) => {
+  app.use('*', async (req, res, next) => {
     const url = req.originalUrl.replace(base, '');
     try {
       const template = fs.readFileSync(htmlRoot, 'utf-8');
 
       const templateHTML = await vite.transformIndexHtml(url, template);
 
-      const { render } = await vite.ssrLoadModule('./src/entry-server.tsx');
+      const { render } = await vite.ssrLoadModule('src/entry-server.tsx');
 
       const [htmlStart, htmlEnd] = templateHTML.split(`<!--from-server-->`);
 
