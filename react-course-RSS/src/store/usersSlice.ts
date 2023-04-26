@@ -1,5 +1,9 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import * as toolkitRaw from '@reduxjs/toolkit';
+
 import { IUserCard } from '../types';
+
+export type TypeToolkitRaw = typeof toolkitRaw & { default?: unknown };
+const { createSlice } = ((toolkitRaw as TypeToolkitRaw).default ?? toolkitRaw) as typeof toolkitRaw;
 
 interface UsersState {
   users: IUserCard[];
@@ -13,7 +17,7 @@ export const usersSlice = createSlice({
   name: 'usersBase',
   initialState,
   reducers: {
-    addNewUser: (state, action: PayloadAction<IUserCard>) => {
+    addNewUser: (state, action: toolkitRaw.PayloadAction<IUserCard>) => {
       state.users.push(action.payload);
     },
   },

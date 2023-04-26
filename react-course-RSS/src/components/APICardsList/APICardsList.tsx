@@ -31,9 +31,6 @@ export default function APICardsList() {
 
   return (
     <>
-      <ModalWindow isOpen={isOpen} closeWindow={toggle}>
-        <PersonDetails />
-      </ModalWindow>
       <div className="cards-api">
         <div className="cards-api_wrapper">
           {data && data.results
@@ -54,6 +51,9 @@ export default function APICardsList() {
             : ''}
         </div>
       </div>
+      <ModalWindow isOpen={isOpen} closeWindow={toggle}>
+        <PersonDetails />
+      </ModalWindow>
     </>
   );
 }

@@ -52,6 +52,8 @@ async function createServer() {
         onError(err: Error) {
           // eslint-disable-next-line no-console
           console.error(err);
+          // res.status(500);
+          // res.send(`<h1>Something went wrong</h1>`);
         },
       });
     } catch (error) {

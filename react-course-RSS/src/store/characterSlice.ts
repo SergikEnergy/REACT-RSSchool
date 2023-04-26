@@ -1,5 +1,8 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import * as toolkitRaw from '@reduxjs/toolkit';
 import { ISingleDataFromAPI } from '../types';
+
+export type TypeToolkitRaw = typeof toolkitRaw & { default?: unknown };
+const { createSlice } = ((toolkitRaw as TypeToolkitRaw).default ?? toolkitRaw) as typeof toolkitRaw;
 
 interface CharactersState {
   character: ISingleDataFromAPI[];
@@ -9,7 +12,7 @@ interface CharactersState {
 
 export const initialState = {
   character: [],
-  id: 0,
+  id: 1,
   error: '',
 } as CharactersState;
 
@@ -17,10 +20,10 @@ export const characterSlice = createSlice({
   name: 'characters',
   initialState,
   reducers: {
-    getAnotherCharacter: (state, action: PayloadAction<ISingleDataFromAPI[]>) => {
+    getAnotherCharacter: (state, action: toolkitRaw.PayloadAction<ISingleDataFromAPI[]>) => {
       return { ...state, character: action.payload };
     },
-    getCharacterId: (state, action: PayloadAction<number>) => {
+    getCharacterId: (state, action: toolkitRaw.PayloadAction<number>) => {
       return { ...state, id: action.payload };
     },
   },

@@ -5,11 +5,12 @@
     <link rel="icon" type="image/svg+xml" href="/favicon-phenix.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>React.SSR</title>
-		<link rel="stylesheet" href="./src/index.css">
+    <link rel="stylesheet" href="./src/index.css" />
   </head>
   <body class="body">
+    <noscript> You need to enable JavaScript to run this app. </noscript>
     <div id="root"><!--from-server--></div>
-		<!--preload-->
-    <script type="module" src="./src/entry-client.tsx"></script>
+    <!--preload-->
+    <script type="module" src="./src/entry-client.tsx" defer></script>
   </body>
 </html>

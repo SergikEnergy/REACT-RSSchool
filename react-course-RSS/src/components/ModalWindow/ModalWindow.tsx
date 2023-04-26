@@ -1,4 +1,4 @@
-import { ReactNode, useEffect } from 'react';
+import { ReactNode, useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 
 import closeImg from '../../assets/img/close_icon.jpg';
@@ -11,7 +11,7 @@ interface ModalWindowProps {
 
 export default function ModalWindow(props: ModalWindowProps) {
   const { isOpen, closeWindow, children } = props;
-
+  const [isDomReady, setIsDomReady] = useState(false);
   const onKeyDown = (event: KeyboardEvent) => {
     if (event.key === 'Escape' && isOpen) {
       closeWindow();
@@ -25,23 +25,29 @@ export default function ModalWindow(props: ModalWindowProps) {
     };
   });
 
-  return createPortal(
-    <div data-testid="testModalWindow" className={`modal__overlay ${isOpen ? 'active' : ''}`} role="presentation" onClick={closeWindow}>
-      <div
-        role="presentation"
-        className={`modal__content ${isOpen ? 'active' : ''}`}
-        onClick={(event: React.MouseEvent<HTMLDivElement>) => {
-          event.stopPropagation();
-        }}
-      >
-        <div className="modal__header">
-          <div data-testid="testCloseEvent" role="presentation" className="modal__close" onClick={closeWindow}>
-            <img src={closeImg} alt="close" />
+  useEffect(() => {
+    setIsDomReady(true);
+  }, []);
+
+  if (isDomReady)
+    return createPortal(
+      <div data-testid="testModalWindow" className={`modal__overlay ${isOpen ? 'active' : ''}`} role="presentation" onClick={closeWindow}>
+        <div
+          role="presentation"
+          className={`modal__content ${isOpen ? 'active' : ''}`}
+          onClick={(event: React.MouseEvent<HTMLDivElement>) => {
+            event.stopPropagation();
+          }}
+        >
+          <div className="modal__header">
+            <div data-testid="testCloseEvent" role="presentation" className="modal__close" onClick={closeWindow}>
+              <img src={closeImg} alt="close" />
+            </div>
           </div>
+          <div className="modal__body">{children}</div>
         </div>
-        <div className="modal__body">{children}</div>
-      </div>
-    </div>,
-    document.querySelector('.body') as HTMLElement
-  );
+      </div>,
+      document.body
+    );
+  return null;
 }
