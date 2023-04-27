@@ -21,7 +21,7 @@ export const setupStore = (preloadedState?: toolkitRaw.PreloadedState<ReturnType
     reducer: rootReducer,
     preloadedState,
     middleware: (getDefaultMiddleware) => {
-      return getDefaultMiddleware().concat(rickAndMortyApi.middleware);
+      return getDefaultMiddleware({ immutableCheck: { warnAfter: 128 }, serializableCheck: { warnAfter: 128 } }).concat(rickAndMortyApi.middleware);
     },
   });
 
