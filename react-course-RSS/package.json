@@ -4,11 +4,7 @@
   "version": "0.1.0",
   "type": "module",
   "scripts": {
-    "dev": "nodemon  server.ts",
     "start": "ts-node server.ts",
-    "build": "npm run build:client && npm run build:server",
-    "build:client": "vite build --outDir dist/client",
-    "build:server": "vite build --ssr src/entry-server.tsx --outDir dist/server ",
     "test:vi": "vitest",
     "test:vi-coverage": "vitest run --coverage",
     "lint": "npx eslint . --ext .js,.jsx,.ts,.tsx",
@@ -84,6 +80,7 @@
     "jsdom": "^21.1.1",
     "msw": "^1.2.1",
     "nodemon": "^2.0.22",
+    "nyc": "^15.1.0",
     "prettier": "^2.8.4",
     "start-server-and-test": "^2.0.0",
     "ts-node": "^10.9.1",
@@ -94,5 +91,26 @@
     "vite-plugin-svgr": "^2.4.0",
     "vite-tsconfig-paths": "^4.2.0",
     "vitest": "^0.29.2"
+  },
+  "nyc": {
+    "extends": "@istanbuljs/nyc-config-typescript",
+    "extension": [
+      ".tsx"
+    ],
+    "include": [
+      "src/**/*.tsx"
+    ],
+    "exclude": [
+      "cypress/",
+      "node_modules/",
+      "assets/",
+      "dist/",
+      "src/tests/"
+    ],
+    "reporter": [
+      "html"
+    ],
+    "report-dir": "coverage",
+    "all": true
   }
 }
