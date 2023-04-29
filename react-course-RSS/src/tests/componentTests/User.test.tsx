@@ -2,7 +2,7 @@ import { describe, test } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { IUserCard } from '../../types';
 
-import User from './User';
+import User from '../../components/User/User';
 
 const fakeUser: IUserCard = {
   social: 'Instagram',

@@ -4,7 +4,7 @@ import { describe, test, vi } from 'vitest';
 import * as reduxHooks from 'react-redux';
 // import * as actions from '../../store/usersSlice';
 import { setupStore } from '../../store';
-import FormComponent from './FormComponent';
+import FormComponent from '../../components/FormComponent/FormComponent';
 
 const store = setupStore();
 global.URL.createObjectURL = vi.fn();

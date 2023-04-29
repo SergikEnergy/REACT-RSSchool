@@ -4,7 +4,7 @@ import { describe, test } from 'vitest';
 import { Provider } from 'react-redux';
 
 import { setupStore } from '../../store';
-import FormPage from './FormPage';
+import FormPage from '../../pages/form/FormPage';
 
 const store = setupStore();
 describe('render Form Page test', () => {

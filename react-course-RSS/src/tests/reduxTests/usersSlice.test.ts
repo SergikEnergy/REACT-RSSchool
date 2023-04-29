@@ -1,6 +1,6 @@
 import { describe, test } from 'vitest';
-import reducer, { initialState, addNewUser } from './usersSlice';
-import fakeUsers from '../data/fakeUsers';
+import reducer, { initialState, addNewUser } from '../../store/usersSlice';
+import fakeUsers from '../../data/fakeUsers';
 
 describe('test slice searchParams', () => {
   test('check of returning the initial state', () => {

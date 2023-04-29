@@ -4,7 +4,7 @@ import { render, screen, waitFor, fireEvent } from '@testing-library/react';
 import * as reduxTools from 'react-redux';
 import { setupStore } from '../../store';
 
-import InputSearchByName from './InputSearchByName';
+import InputSearchByName from '../../components/inputSearchByName/InputSearchByName';
 
 const store = setupStore();
 

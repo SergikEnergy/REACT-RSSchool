@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import { describe, test } from 'vitest';
 
-import AboutPage from './AboutPage';
+import AboutPage from '../../pages/about/AboutPage';
 
 describe('render not-found', () => {
   test('renders section with About Page', () => {

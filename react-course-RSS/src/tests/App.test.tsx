@@ -2,10 +2,10 @@ import React from 'react';
 import { render, screen, act } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import { setupStore } from './store';
+import { setupStore } from '../store';
 import '@testing-library/jest-dom';
 
-import App from './App';
+import App from '../App';
 
 const store = setupStore();
 

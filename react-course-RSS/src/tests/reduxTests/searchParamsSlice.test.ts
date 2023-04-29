@@ -1,5 +1,5 @@
 import { describe, test } from 'vitest';
-import reducer, { initialState, setSearchParams } from './searchParamsSlice';
+import reducer, { initialState, setSearchParams } from '../../store/searchParamsSlice';
 
 describe('test slice searchParams', () => {
   test('check of returning the initial state', () => {

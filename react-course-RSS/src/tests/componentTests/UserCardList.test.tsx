@@ -1,7 +1,7 @@
 import { describe, test, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import * as reduxHooks from 'react-redux';
-import UsersCardList from './UsersCardList';
+import UsersCardList from '../../components/UsersCardList/UsersCardList';
 
 import { setupStore } from '../../store';
 import fakeUsers from '../../data/fakeUsers';

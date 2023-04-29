@@ -1,7 +1,7 @@
 import { BrowserRouter } from 'react-router-dom';
 import { render, screen } from '@testing-library/react';
 import { describe, test } from 'vitest';
-import NotFound from './NotFound';
+import NotFound from '../../pages/404/NotFound';
 
 describe('render notFound Page test', () => {
   test('renders Go Home Link', () => {

@@ -3,13 +3,12 @@ import { unmountComponentAtNode } from 'react-dom';
 import { render, screen, waitFor } from '@testing-library/react';
 
 import * as reduxHooks from 'react-redux';
-import store from '../../store';
+import { setupStore } from '../../store';
 import server from '../../mocks/server';
 import { rickAndMortyApi } from '../../services/APIServiceRTQ';
-// import { useGetCharacterByIdQuery } from '../../services/APIServiceRTQ';
-import PersonDetails from './PersonDetails';
-// import fakeCharacter from '../../data/fakeCharacter';
+import PersonDetails from '../../components/PersonDetails/PersonDetails';
 
+const store = setupStore();
 vi.mock('react-redux');
 
 beforeAll(() => {

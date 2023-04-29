@@ -5,7 +5,7 @@ import '@testing-library/jest-dom';
 import { Provider } from 'react-redux';
 import { setupStore } from '../../store';
 
-import MainPage from './MainPage';
+import MainPage from '../../pages/main/MainPage';
 
 const store = setupStore();
 describe('render mainPage', () => {

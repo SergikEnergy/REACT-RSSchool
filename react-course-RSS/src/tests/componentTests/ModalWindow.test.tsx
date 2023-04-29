@@ -1,7 +1,7 @@
 import { describe, test, vi } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
 
-import ModalWindow from './ModalWindow';
+import ModalWindow from '../../components/ModalWindow/ModalWindow';
 
 describe('test Modal Window', () => {
   test('render Modal with isOpen props', () => {

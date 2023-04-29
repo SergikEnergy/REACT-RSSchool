@@ -1,6 +1,6 @@
 import { describe, test } from 'vitest';
-import reducer, { initialState, getAnotherCharacter, getCharacterId } from './characterSlice';
-import mockData from '../mocks/mockData';
+import reducer, { initialState, getAnotherCharacter, getCharacterId } from '../../store/characterSlice';
+import mockData from '../../mocks/mockData';
 
 describe('test slice character', () => {
   test('check of returning the initial state', () => {

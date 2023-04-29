@@ -1,7 +1,7 @@
 import { describe, test } from 'vitest';
 import { render, screen } from '@testing-library/react';
 
-import NotData from './NotData';
+import NotData from '../../components/NotData/NotData';
 
 describe('test not data component on render', () => {
   test('should render', () => {

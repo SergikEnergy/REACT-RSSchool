@@ -2,7 +2,7 @@ import { describe, test, expect } from 'vitest';
 import { render } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
 
-import Layout from './Layout';
+import Layout from '../../components/layout/Layout';
 
 describe('Layout render', () => {
   test('Should have Layout part', () => {
