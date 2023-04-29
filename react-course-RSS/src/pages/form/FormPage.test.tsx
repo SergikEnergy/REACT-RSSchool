@@ -2,9 +2,11 @@ import { BrowserRouter } from 'react-router-dom';
 import { render, screen } from '@testing-library/react';
 import { describe, test } from 'vitest';
 import { Provider } from 'react-redux';
-import store from '../../store';
+
+import { setupStore } from '../../store';
 import FormPage from './FormPage';
 
+const store = setupStore();
 describe('render Form Page test', () => {
   test('should render form page', () => {
     render(

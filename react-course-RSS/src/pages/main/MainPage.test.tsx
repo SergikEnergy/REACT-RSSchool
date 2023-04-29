@@ -1,10 +1,13 @@
 import { render, screen } from '@testing-library/react';
 import { describe, test } from 'vitest';
+import '@testing-library/jest-dom';
 
 import { Provider } from 'react-redux';
-import store from '../../store';
+import { setupStore } from '../../store';
+
 import MainPage from './MainPage';
 
+const store = setupStore();
 describe('render mainPage', () => {
   test('renders section main page', () => {
     render(

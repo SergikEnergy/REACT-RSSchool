@@ -3,8 +3,10 @@ import { render, screen } from '@testing-library/react';
 import * as reduxHooks from 'react-redux';
 import UsersCardList from './UsersCardList';
 
-import store from '../../store';
+import { setupStore } from '../../store';
 import fakeUsers from '../../data/fakeUsers';
+
+const store = setupStore();
 
 vi.mock('react-redux');
 

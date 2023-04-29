@@ -3,9 +3,10 @@ import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { describe, test, vi } from 'vitest';
 import * as reduxHooks from 'react-redux';
 // import * as actions from '../../store/usersSlice';
-import store from '../../store';
+import { setupStore } from '../../store';
 import FormComponent from './FormComponent';
 
+const store = setupStore();
 global.URL.createObjectURL = vi.fn();
 vi.mock('react-redux');
 

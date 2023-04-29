@@ -43,7 +43,7 @@ module.exports = {
     'import/no-extraneous-dependencies': [
       'error',
       {
-        devDependencies: ['**/*.test.ts', '**/*.test.tsx', 'vite.config.ts', 'src/mocks/*', 'server.ts'],
+        devDependencies: ['**/*.test.ts', '**/*.test.tsx', 'vite.config.ts', 'src/mocks/*', 'server.ts', './cypress.config.ts'],
       },
     ],
   },

@@ -2,9 +2,11 @@ import { describe, test, vi } from 'vitest';
 import { render, screen, waitFor, fireEvent } from '@testing-library/react';
 
 import * as reduxTools from 'react-redux';
-import store from '../../store';
+import { setupStore } from '../../store';
 
 import InputSearchByName from './InputSearchByName';
+
+const store = setupStore();
 
 describe('test input panel', () => {
   test('renderInputElement', () => {

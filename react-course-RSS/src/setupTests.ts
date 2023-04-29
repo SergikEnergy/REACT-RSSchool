@@ -3,6 +3,9 @@ import matchers from '@testing-library/jest-dom/matchers';
 import { expect, afterEach } from 'vitest';
 import { cleanup } from '@testing-library/react';
 import server from './mocks/server';
+import 'whatwg-fetch';
+import '@testing-library/jest-dom';
+import '@testing-library/jest-dom/extend-expect';
 
 expect.extend(matchers);
 
