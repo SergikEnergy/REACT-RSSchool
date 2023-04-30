@@ -1,7 +1,5 @@
-/// <reference types="cypress" />
-
-describe('Just visit e2e test', () => {
-  it('should visit', () => {
-    cy.visit('/');
+describe('template spec', () => {
+  it('passes', () => {
+    cy.visit('https://example.cypress.io');
   });
 });

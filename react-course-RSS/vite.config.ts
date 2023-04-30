@@ -38,7 +38,7 @@ import React from 'react';
     coverage: {
       provider: 'c8',
       reporter: ['text', 'html'],
-      exclude: ['node_modules/', 'src/setupTests.ts', 'src/tests/'],
+      exclude: ['node_modules/', 'src/setupTests.ts', 'src/tests', 'cypress'],
     },
   },
 });
