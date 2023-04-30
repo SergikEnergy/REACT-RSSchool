@@ -1,0 +1,45 @@
+@import './pages/404/notFound.css';
+@import './pages/about/aboutPage.css';
+@import './pages/form/formPage.css';
+@import './pages/main/mainPage.css';
+@import './components/APICardsList/apiCardsList.css';
+@import './components/User/user.css';
+@import './components/footer/footer.css';
+@import './components/header/header.css';
+@import './components/FormComponent/formComponent.css';
+@import './components/inputSearchByName/inputSearchByName.css';
+@import './components/ModalWindow/modalWindow.css';
+@import './components/NotData/notData.css';
+@import './components/Person/person.css';
+@import './components/PersonDetails/personDetails.css';
+@import './components/PreLoader/preloader.css';
+@import './components/UI/Button/submitButton.css';
+@import './components/UI/InputRadio/inputRadio.css';
+@import './components/UI/InputText/inputText.css';
+@import './components/UI/OptionElement/optionElement.css';
+@import './components/UI/Switcher/switcher.css';
+@import './components/User/user.css';
+@import './components/UsersCardList/usersCardList.css';
+
+html {
+  font-size: 10px;
+  margin: 0 auto;
+  padding: 0;
+  box-sizing: border-box;
+  max-width: 2430px;
+  width: 100%;
+}
+
+.body {
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+#root {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}

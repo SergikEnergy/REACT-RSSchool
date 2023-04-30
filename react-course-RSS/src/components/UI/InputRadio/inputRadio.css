@@ -1,0 +1,27 @@
+.social-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.social__label {
+  color: #801eff;
+  margin: 0 0 5px;
+  font-size: 2rem;
+  line-height: 2rem;
+  font-family: Verdana, Tahoma, sans-serif;
+}
+
+.social__radio_wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.social__elem {
+  padding-top: 5px;
+  font-size: 1.8rem;
+  line-height: 1.8rem;
+  color: #050305;
+}
