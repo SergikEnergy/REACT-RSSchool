@@ -1,6 +1,5 @@
 import { render, screen } from '@testing-library/react';
 import { describe, test } from 'vitest';
-import '@testing-library/jest-dom';
 
 import { Provider } from 'react-redux';
 import { setupStore } from '../../store';

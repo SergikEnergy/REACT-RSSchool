@@ -19,3 +19,7 @@ import '@cypress/code-coverage/support';
 
 // Alternatively you can use CommonJS syntax:
 // require('./commands')
+
+/* afterEach(() => {
+  cy.window().trigger('unload');
+}); for prevent infinity loading*/
