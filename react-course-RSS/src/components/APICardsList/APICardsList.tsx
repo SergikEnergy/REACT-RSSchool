@@ -31,7 +31,7 @@ export default function APICardsList() {
 
   return (
     <>
-      <div className="cards-api">
+      <div className="cards-api" data-testid="cards-api">
         <div className="cards-api_wrapper">
           {data && data.results
             ? data.results.map((item) =>

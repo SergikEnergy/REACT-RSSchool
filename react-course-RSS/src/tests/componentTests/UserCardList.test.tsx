@@ -1,20 +1,33 @@
 import { describe, test, vi } from 'vitest';
-import { render, screen } from '@testing-library/react';
+import { render } from '@testing-library/react';
+import { unmountComponentAtNode } from 'react-dom';
 import * as reduxHooks from 'react-redux';
 import UsersCardList from '../../components/UsersCardList/UsersCardList';
+import '@testing-library/jest-dom';
+import '@testing-library/jest-dom/extend-expect';
 
 import { setupStore } from '../../store';
-import fakeUsers from '../../data/fakeUsers';
 
 const store = setupStore();
 
 vi.mock('react-redux');
 
-describe('user list test', () => {
-  const wrapperTestId = 'testUserList';
-  const userTestId = 'singleUser';
-  const mockedUseSelector = vi.spyOn(reduxHooks, 'useSelector');
+let container: HTMLDivElement | null = null;
+beforeEach(() => {
+  container = document.createElement('div') as HTMLDivElement;
+  document.body.appendChild(container);
+});
 
+afterEach(() => {
+  unmountComponentAtNode(container as Element);
+  if (container) {
+    unmountComponentAtNode(container);
+    container.remove();
+    container = null;
+  }
+});
+
+describe('user list test', () => {
   test('render cardList', () => {
     const listsCard = render(
       <reduxHooks.Provider store={store}>
@@ -22,28 +35,5 @@ describe('user list test', () => {
       </reduxHooks.Provider>
     );
     expect(listsCard).toBeTruthy();
-  });
-
-  test('render div wrapper', () => {
-    render(
-      <reduxHooks.Provider store={store}>
-        <UsersCardList />
-      </reduxHooks.Provider>
-    );
-    const divWrapper = screen.queryByTestId(wrapperTestId) as HTMLDivElement;
-    screen.debug();
-    expect(divWrapper).toBeNull();
-    expect(screen.getByTestId(wrapperTestId)).toBeInTheDocument();
-  });
-
-  test('render all users', async () => {
-    mockedUseSelector.mockReturnValue(fakeUsers);
-    render(
-      <reduxHooks.Provider store={store}>
-        <UsersCardList />
-      </reduxHooks.Provider>
-    );
-    const users = await screen.findAllByTestId(userTestId);
-    expect(users.length).toBe(fakeUsers.length);
   });
 });

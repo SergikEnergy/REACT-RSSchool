@@ -9,7 +9,7 @@ import App from '../App';
 const store = setupStore();
 
 describe('test App router', () => {
-  test('renders main page', async () => {
+  test('check rendering main page', async () => {
     await act(async () => {
       render(
         <Provider store={store}>
@@ -20,5 +20,27 @@ describe('test App router', () => {
       );
     });
     expect(screen.getByTestId('mainTitle')).toBeInTheDocument();
+  });
+
+  test('check rendering about page', () => {
+    render(
+      <Provider store={store}>
+        <MemoryRouter initialEntries={['/about']}>
+          <App />
+        </MemoryRouter>
+      </Provider>
+    );
+    expect(screen.getByText(/some information about/)).toBeInTheDocument();
+  });
+
+  test('check rendering not-found page', () => {
+    render(
+      <Provider store={store}>
+        <MemoryRouter initialEntries={['/some-route']}>
+          <App />
+        </MemoryRouter>
+      </Provider>
+    );
+    expect(screen.getByText(/page not found/)).toBeInTheDocument();
   });
 });

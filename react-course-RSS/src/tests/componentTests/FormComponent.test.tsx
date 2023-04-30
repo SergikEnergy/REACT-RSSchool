@@ -1,38 +1,31 @@
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
-
 import { describe, test, vi } from 'vitest';
-import * as reduxHooks from 'react-redux';
-// import * as actions from '../../store/usersSlice';
+import { Provider } from 'react-redux';
 import { setupStore } from '../../store';
+import '@testing-library/jest-dom';
 import FormComponent from '../../components/FormComponent/FormComponent';
 
 const store = setupStore();
 global.URL.createObjectURL = vi.fn();
-vi.mock('react-redux');
-
-const mockedDispatch = vi.spyOn(reduxHooks, 'useDispatch');
 
 describe('test Form Component', () => {
-  const foo = vi.fn();
-  mockedDispatch.mockReturnValue(foo);
+  const addUser = vi.fn();
 
-  // const mockedAddNewUser = vi.spyOn(actions, 'addNewUser');
-
-  test('should render form page', () => {
+  test('should render form page', async () => {
     render(
-      <reduxHooks.Provider store={store}>
+      <Provider store={store}>
         <FormComponent />
-      </reduxHooks.Provider>
+      </Provider>
     );
     const formId = 'formTag';
-    const formPage = screen.getByTestId(formId);
+    const formPage = await screen.findByTestId(formId);
     expect(formPage).toBeInTheDocument();
   });
   test('should render all Inputs', async () => {
     render(
-      <reduxHooks.Provider store={store}>
+      <Provider store={store}>
         <FormComponent />
-      </reduxHooks.Provider>
+      </Provider>
     );
     expect(await screen.findByTestId('firstNameTest')).toBeInTheDocument();
     expect(await screen.findByTestId('lastNameTest')).toBeInTheDocument();
@@ -43,22 +36,22 @@ describe('test Form Component', () => {
   });
   test('should display required error when value is invalid', async () => {
     render(
-      <reduxHooks.Provider store={store}>
+      <Provider store={store}>
         <FormComponent />
-      </reduxHooks.Provider>
+      </Provider>
     );
     fireEvent.submit(screen.getByRole('button'));
     expect(await screen.findByTestId('switcherError')).toBeInTheDocument();
   });
-  test('submitting form', () => {
+  test('submitting form', async () => {
     const fileForTest = new File(['test'], 'testImage.jpg', {
       type: 'image/jpg',
     });
 
     render(
-      <reduxHooks.Provider store={store}>
+      <Provider store={store}>
         <FormComponent />
-      </reduxHooks.Provider>
+      </Provider>
     );
 
     fireEvent.change(screen.getByTestId('firstNameTest'), {
@@ -79,12 +72,12 @@ describe('test Form Component', () => {
     fireEvent.click(screen.getByTestId('InstagramTest'));
     fireEvent.click(screen.getByTestId('switcherTest'));
     fireEvent.click(screen.getByTestId('buttonTest'));
-  });
 
-  waitFor(() => {
-    const userName = screen.findByTestId('firstNameTest');
-    expect(userName).toHaveValue('userTestName');
-    expect(userName).toBeInTheDocument();
-    expect(foo).toHaveBeenCalledTimes(1);
+    waitFor(() => {
+      const userName = screen.findByTestId('firstNameTest');
+      expect(userName).toHaveValue('userTestName');
+      expect(userName).toBeInTheDocument();
+      expect(addUser).toHaveBeenCalledTimes(1);
+    });
   });
 });
