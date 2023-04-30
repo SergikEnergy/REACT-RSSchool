@@ -1,3 +1,4 @@
+/* eslint-disable import/prefer-default-export */
 import { RenderToPipeableStreamOptions, renderToPipeableStream } from 'react-dom/server';
 import { StaticRouter } from 'react-router-dom/server';
 import { Provider } from 'react-redux';
@@ -7,7 +8,6 @@ import { rickAndMortyApi } from './services/APIServiceRTQ';
 import App from './App';
 
 const store = setupStore();
-export default store;
 
 export async function render(url: string, opts: RenderToPipeableStreamOptions) {
   await store.dispatch(rickAndMortyApi.endpoints.getCharacterByName.initiate(''));

@@ -11,7 +11,6 @@ dotenv.config();
 
 async function createServer() {
   const port = process.env.PORT || 5173;
-  const base = process.env.BASE || '/';
 
   const app = express();
   const DirName = dirname(fileURLToPath(import.meta.url));
@@ -20,13 +19,12 @@ async function createServer() {
   const vite = await createViteServer({
     server: { middlewareMode: true },
     appType: 'custom',
-    base,
   });
 
   app.use(vite.middlewares);
 
   app.use('*', async (req, res, next) => {
-    const url = req.originalUrl.replace(base, '');
+    const url = req.originalUrl;
     try {
       const template = fs.readFileSync(htmlRoot, 'utf-8');
 

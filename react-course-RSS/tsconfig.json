@@ -23,7 +23,7 @@
     },
     "outDir": "./dist"
   },
-  "include": ["./vite.config.ts", ".eslintrc.cjs", "src", "server.ts", "cypress.config.ts", "./cypress/e2e/*"],
+  "include": ["./vite.config.ts", ".eslintrc.cjs", "./src", "server.ts", "cypress.config.ts", "./cypress/e2e/*"],
   "exclude": ["node_modules", "cypress/fixtures", "cypress/support"],
   "references": [{ "path": "./tsconfig.node.json" }],
   "ts-node": { "esm": true, "experimentalSpecifierResolution": "node" }

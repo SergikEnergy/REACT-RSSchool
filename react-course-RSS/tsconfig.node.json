@@ -6,5 +6,5 @@
     "allowSyntheticDefaultImports": true,
     "jsx": "preserve"
   },
-  "include": ["vite.config.ts", "./src/entry-server.tsx", "./src/entry-client.tsx", "./src/vite-env.d.ts", "./cypress/e2e"]
+  "include": ["vite.config.ts"]
 }
